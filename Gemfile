@@ -6,15 +6,15 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'rake', '10.0.4'
-gem 'mysql2'
 #gem 'sqlite3'
 
-platforms :mswin do
-  # gems specific to windows
+platforms :mswin do #windows
+  gem 'mysql2'
 end
 
 platforms :ruby do # linux
   gem 'unicorn'
+  gem 'pg'
 end
 # Gems used only for assets and not required
 # in production environments by default.
