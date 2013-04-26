@@ -39,7 +39,7 @@
     <file path="/20130425002001_change_booleans_default_to_false.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1366849413254" ignored="false" />
     <file path="/Procfile" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367013103764" ignored="false" />
     <file path="/Gemfile" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367013771640" ignored="false" />
-    <file path="/database.yml" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367014022318" ignored="false" />
+    <file path="/database.yml" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367017212214" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +112,7 @@
       <file leaf-file-name="database.yml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/database.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="20" selection-start="657" selection-end="657" vertical-scroll-proportion="0.6869159">
+            <state line="30" column="12" selection-start="749" selection-end="749" vertical-scroll-proportion="0.7359813">
               <folding />
             </state>
           </provider>
@@ -996,7 +996,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/database.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="20" selection-start="657" selection-end="657" vertical-scroll-proportion="0.6869159">
+        <state line="30" column="12" selection-start="749" selection-end="749" vertical-scroll-proportion="0.7359813">
           <folding />
         </state>
       </provider>

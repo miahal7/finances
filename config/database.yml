@@ -17,13 +17,15 @@ development:
 test:
   adapter: postgresql
   encoding: utf8
-  database: Finances
-  username: finances
-  password: tianp#3?
+  database: d6sruu2orlota9
+  username: umqrxhttudlzll
+  password: xXubwmbgZldGzz-56tNfQzdrfH
+  port: 5432
 
-test:
+production:
   adapter: postgresql
   encoding: utf8
-  database: Finances
-  username: finances
-  password: tianp#3?
+  database: d6sruu2orlota9
+  username: umqrxhttudlzll
+  password: xXubwmbgZldGzz-56tNfQzdrfH
+  port: 5432
