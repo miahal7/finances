@@ -1,0 +1,33 @@
+<h1>Listing transactions</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Amount</th>
+    <th>Recurring</th>
+    <th>Cleared</th>
+    <th>Date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @transactions.each do |transaction| %>
+  <tr>
+    <td><%= transaction_name(transaction.name_id) %></td>
+    <td><%= transaction_desc(transaction.name_id) %></td>
+    <td><%= transaction.amount %></td>
+    <td><%= transaction.recurring %></td>
+    <td><%= transaction.cleared %></td>
+    <td><%= transaction.date %></td>
+    <td><%= link_to 'Show', transaction %></td>
+    <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+    <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Transaction', new_transaction_path %>

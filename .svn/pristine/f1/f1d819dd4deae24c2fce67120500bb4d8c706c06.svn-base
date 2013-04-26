@@ -1,0 +1,10 @@
+$(document).ready(function () {
+
+
+
+    $("#new_trans_btn").button();
+
+    $("#trans-tab").addClass('active');
+
+});
+

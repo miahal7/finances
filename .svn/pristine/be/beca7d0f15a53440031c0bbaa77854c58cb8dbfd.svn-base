@@ -1,0 +1,29 @@
+module TransactionsHelper
+  def vendor_name(transaction)
+    transaction.vendor.nil? ? '' : transaction.vendor.name
+  end
+
+  def category_name(transaction)
+    transaction.category.nil? ? '' : transaction.category.name
+  end
+
+  def month_name
+    Date.strptime(@ledger_date, '%Y-%m-%d').strftime('%B %Y')
+  end
+
+  def next_month
+    session[:direction] = 'next'
+    Date.strptime(@ledger_date, '%Y-%m-%d').next_month
+  end
+
+  def prev_month
+    session[:direction] = 'prev'
+    Date.strptime(@ledger_date, '%Y-%m-%d').prev_month
+  end
+
+  def ledger_date
+    date = params[:ledger_date].nil? ? Time.now : Date.strptime(params[:ledger_date], '%Y-%m-%d')
+    date.strftime('%Y-%m-01')
+  end
+
+end

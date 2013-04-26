@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name_id: 1
+  month_id: 1
+  amount: 
+  recurring: false
+  cleared: false
+  date: 2012-07-01
+
+two:
+  name_id: 1
+  month_id: 1
+  amount: 
+  recurring: false
+  cleared: false
+  date: 2012-07-01

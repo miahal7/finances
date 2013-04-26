@@ -1,0 +1,50 @@
+header{
+    width:100.1%;
+    position:fixed;
+    background: #004276;
+    color:white;
+    height:80px;
+    margin: -10px -8px 0 -9px;
+    z-index: 999;
+}
+
+.july{ background-image: url("july-bg.png"); }
+.august{ background-image: url("august-bg.png"); }
+.september{ background-image: url("september-bg.png"); }
+
+header div.title{
+    color: #ffffff;
+    font-size: 45px;
+    float: right;
+    padding: 57px 25px 0 40px;
+    font-family: Delicious, sans-serif;;
+}
+
+header nav{
+    padding: 53px 133px 0 7px;
+    margin: 0 auto;
+    width: 80%;
+}
+
+header nav#nav-bar a{
+    border: 1px solid #d8dcdf;
+    background: #111111 url('ui-bg_glass_55_fdf7f8_1x400.png') 50% 50%;
+    font-weight: bold;
+    color: #585858;
+    text-decoration: none;
+    border-radius: 6px 6px 0 0;
+    padding: 5px 11px 9px 11px;
+}
+
+header nav#nav-bar a:hover {
+    color: #585858;
+    border: 1px solid #d8dcdf;
+    background: #f8f8f8;
+}
+
+header nav#nav-bar a:active, .active {
+    background: url('ui-bg_flat_65_ffffff_40x100.png') repeat-x  !important;
+    font-weight: bold;
+    color: #db4865 !important;
+    border-bottom: 1px solid #ffffff !important;
+}

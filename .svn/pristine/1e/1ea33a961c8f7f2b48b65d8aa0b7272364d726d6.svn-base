@@ -1,0 +1,91 @@
+class VendorsController < ApplicationController
+  # GET /vendors
+  # GET /vendors.json
+  def index
+    @vendors = Vendor.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @vendors }
+    end
+  end
+
+  # GET /vendors/1
+  # GET /vendors/1.json
+  def show
+    @vendor = Vendor.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @vendor }
+    end
+  end
+
+  # GET /vendors/new
+  # GET /vendors/new.json
+  def new
+    @vendor = Vendor.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @vendor }
+    end
+  end
+
+  # GET /vendors/1/edit
+  def edit
+    @vendor = Vendor.find(params[:id])
+  end
+
+  # POST /vendors
+  # POST /vendors.json
+  def create
+    @vendor = Vendor.new(params[:vendor])
+
+    respond_to do |format|
+      if @vendor.save
+        format.html { redirect_to @vendor, notice: 'Vendor was successfully created.' }
+        format.json { render json: @vendor, status: :created, location: @vendor }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @vendor.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /vendors/1
+  # PUT /vendors/1.json
+  def update
+    @vendor = Vendor.find(params[:id])
+
+    respond_to do |format|
+      if @vendor.update_attributes(params[:vendor])
+        format.html { redirect_to @vendor, notice: 'Vendor was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @vendor.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /vendors/1
+  # DELETE /vendors/1.json
+  def destroy
+    @vendor = Vendor.find(params[:id])
+    @vendor.destroy
+
+    respond_to do |format|
+      format.html { redirect_to vendors_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def named_like
+    vendors = Vendor.typeahead
+    #vendors = ["ACCT1", "ACCT2", "ACCT3", "ACCTCL", "ACCTM", "ACCTMS", "ACTLE", "ACTLE1", "ACTLE2", "ACTM1", "ACTM3", "ACTMGR", "ADMAS1", "ADMAS2", "ADMAS3", "ADMAST1", "ADMAST3", "APASST", "APCLK1", "APCLK2", "APDSCL", "APLEAD", "APMGR", "APSUPV", "ARASST", "ARCLC", "ARCLK1", "ARCLK2", "ARDRHR", "ARDRHS", "ARDRLB", "ARM", "ARSWM", "ASCNTL", "ASSOCG", "ASSOCT", "ASTAST", "ASTCRD", "ASTLMI", "ASTM", "ASTML", "ASTRNI", "AUDM", "AUDSR", "AUDSV", "BACOPR", "BDMGR", "BDMGRI", "BENAN2", "BENCLK", "BENMGR", "BOATSK", "BOPTEC", "BUSAN", "BUSANM", "BUSPRL", "BUSPRM", "BUSSYC", "CASHM", "CASSM", "CEMNSP", "CEMNSV", "CEO", "CHEMLO", "CHOKO1", "CHOKO2", "CHOKO3", "CISPE", "CLAIMM", "CLERCR", "CLERK1", "CLYSP", "CNTA", "CNTAM", "CNTAS", "CNTASS", "CNTATT", "CNTFAN", "COLLCL", "COLLM", "COLMGR", "COMENG", "COMMGR", "COMPAN", "COMPM", "CONCCR", "CONSOP", "CONSTOP", "COOK", "CRAOP", "CRAOPM", "CREANA", "CRECLK", "CREDSV", "CRELED", "CREREP", "CRITIM", "CRQAMR", "CTUOPR", "CURDES", "CVANOP", "DATACL", "DATACS", "DATAST", "DBAD2", "DERR", "DERR24", "DERRM", "DERRR", "DESENG", "DIADM", "DICRED", "DIRBTO", "DIREP", "DIROPA", "DIRSWD", "DISCL", "DISCLL", "DISP", "DISPATC", "DISPFR", "DISPOO", "DISPOS", "DISPSV", "DOTCOR", "DOTCSV", "DRACCI", "DRACCT", "DRAM", "DRASEQ", "DRAUD", "DRBUSA", "DRCORA", "DRCUSF", "DRDISB", "DRENGP", "DRENV", "DRFACM", "DRFETX", "DRFINR", "DRFT", "DRHR", "DRHSE", "DRIT", "DRITSV", "DRL", "DRLDER", "DRLFL", "DRLMGR", "DRLMH", "DRLOSS", "DRLRLF", "DRLSPT", "DRLSV", "DRMFG", "DRMKT", "DROSUP", "DRPROC", "DRRCT", "DRRISK", "DRSCM", "DRSCTR", "DRTAX", "DRTEC", "DRTRES", "DRVTRN", "DSASSM", "DSM", "DSMASV", "DSTENG", "DSTFLC", "DSTFLE", "DVAMGR", "DVCCOR", "DVCLMG", "DVCON3", "DVDDHR", "DVDER", "DVDHSE", "DVENGM", "DVEQUM", "DVMGR", "DVMNTM", "DVSENG", "DVTECM", "ECCLK", "ECLEAD", "ECSUPV", "ELTEC1", "ELTEC2", "ELTEC3", "ENG", "ENGENL", "ENGMLB", "ENGTSM", "ENVSP1", "ENVSP2", "EPRJM", "EQMGR", "EQOP1", "EQOP1R", "EQOP2", "EQOP2R", "EQOP3", "EQOP3R", "EQOP4", "EQOPN1", "EQOPN2", "EQOPN3", "EQOPN4", "EQOPPA", "EQTPAD", "EVPCOO", "EXEAST", "FACCM", "FACMGR", "FACSUP", "FDCOR", "FDENG", "FDSSV", "FDSSVR", "FDSV", "FDSVC", "FDTEC1", "FDTEC2", "FINANM", "FINRM", "FLDAMG", "FLDCUR", "FLDMEC", "FLDSV1", "FLDTRA", "FLEADM", "FLR", "FLR24", "FLRHND", "FLRMAR", "FLRR", "FLUTEC", "FOAMSV", "FOUOPR", "FRACO1", "FRACO2", "FSALE1", "FSALE2", "FSHM", "FSHSV1", "FSHSV2", "FTRSV", "FXACT", "FXACTL", "GALHND", "GLTEC1", "GRAPHS", "GRPVP", "GUNBLD", "HELPER", "HOTODR", "HOTSDR", "HRASST", "HRCOR", "HRGEN", "HRISAN", "HRISANA", "HRISCL", "HRISM", "HRISSP", "HRMGR", "HRPRJM", "HSEAD", "HSEADM", "HSEADS", "HSEAST", "HSECR1", "HSECR2", "HSECR3", "HSETEC", "HUBAPC", "HUBARC", "HUBLED", "HUBSPM", "HUBSPV", "HYCOPR", "HYDOPR", "INCC", "INOSPT", "INRGO", "INRGSV", "INSPCT", "INSTEC", "INTADM", "INTDIR", "INTDRK", "INTDRV", "INTERN", "INTFLR", "INTFOR", "INTLAB", "INTMGR", "INTMMG", "INTOPR", "INTPRF", "INTSAL", "INTSKL", "INTSUP", "INTSUPT", "INTTECH", "INVAN", "INVCC", "INVMLB", "IRDRV", "IRINS", "IRINSV", "IRREBU", "ITOPSM", "ITPRM", "ITQAN3", "ITSDA1", "ITSDA2", "ITSDA3", "ITSDAS", "ITSEC1", "JARTEC", "KVAC1", "KVAC2", "KVAC3", "KVACSV", "KVAV", "KVFT1", "KVMASU", "KVMGR", "KVSPE", "KVTECS", "KVTRM", "LABMGR", "LABSV", "LABT1", "LABT2", "LACCT", "LEGAST", "LEGSEC", "LFINR", "LITSUM", "LMECH", "LMSAN", "LOGMGR", "LRECRT", "LSPOPR", "LUBTAS", "LUBTEC", "MACHIN", "MANMP", "MDIBDM", "MDOPSS", "MDSTR", "MECH1", "MECH2", "MECH3", "MECHEN", "MECHSH", "MFGENG", "MGR", "MKTANA", "MKTMGR", "MKTPSM", "MKTRAN", "MNTINS", "MNTM", "MNTMLB", "MNTSA", "MNTSC", "MNTSM", "MNTSVM", "MTLMGR", "NETEN1", "NETEN2", "OBSTSP", "OBSVAD", "OBSVM", "OFFACA", "OFMGR", "OFSV", "OFSVCA", "OFSVL", "OFSVS", "OPMGR", "OPMGRW", "OPPADM", "OPPCRD", "OPPSV", "OPSFM", "OPSMA1", "OPSMON", "OPSSM", "OPSUPT", "OPSUPV", "ORGSYA", "PARTSM", "PARTSP", "PASUPV", "PCAPTN", "PERFAS", "PIPESV", "PIPETE", "PJCONM", "PJCRD", "PJM", "PJSVM", "PLANS", "PLBUSM", "PLEGAL", "PRBA", "PRBADM", "PRBME", "PRBS", "PRBSL", "PRCMGR", "PRDCA1", "PRDCA3", "PRDCSV", "PRDM", "PRICEM", "PROCCM", "PROCM", "PROICR", "PROIEN", "PROISP", "PROMGR", "PROPTO", "PUMPDR", "PUMPDRV", "PURCH1", "PURCH2", "PURCHM", "PYANLS", "PYASST", "PYCCLK", "PYCLK", "PYCOO", "PYCRD", "PYDCLK", "PYDIR", "PYMGR", "PYPROC", "PYSOLM", "PYSOPM", "PYSPE", "PYSUPV", "PYTXAD", "QAQCSP", "RCR", "RCRCRD", "RCRMGR", "REALPM", "RECEPT", "RELMGR", "RELOP", "RELOPR", "REVSV", "REVUOP", "RGHUBR", "RGO", "RGO24", "RGOM", "RGOR", "RGSV", "RGSV1", "RGSV2", "RGSV24", "RGSV3", "RGSVM", "RIGSVR", "ROU", "ROUFMS", "ROUFRM", "ROUM", "ROUSV", "RSKMGR", "SALEL", "SALEL2", "SALEL3", "SALEM1", "SALEM2", "SALEML", "SALENG", "SALEOU", "SALER1", "SALER2", "SALER3", "SALMGR", "SANDPT", "SCANNR", "SCMANA", "SCMLPR", "SCMSYM", "SDASM", "SDBHRI", "SDECIB", "SDEMPS", "SDEREL", "SDHR", "SDHSE", "SDHSEL", "SDHSEP", "SDIT", "SDLOB", "SDMKP", "SDMPDV", "SDSTND", "SDTDV", "SDTRES", "SECGRD", "SERSUPV", "SEVER", "SFPRJM", "SFQAAU", "SFQAM", "SFQM", "SHOPF", "SHOPLD", "SHOPM", "SHOPME", "SHRCLK", "SMRCSS", "SOURSP", "SRACCL", "SRCLCR", "SRCLK", "SRCMPA", "SRCMPE", "SRCMPL", "SRDISP", "SRDRAF", "SRFMSE", "SRGSPE", "SRHRSA", "SRINAN", "SRITM", "SRITPM", "SRITTR", "SRMBAN", "SRPRDM", "SRPRJL", "SRPRJM", "SRRECC", "SRSVSV", "SRSYAN", "SRTCSM", "SRTRAN", "SRTXAN", "SRTXM", "SRVPFR", "SSRHPR", "SSROPR", "STFAUD", "STFCNA", "STOCKA", "STQLSP", "SUPV", "SVCDM", "SVCSV", "SVCSVR", "SVCT1", "SVCT2", "SVPCFO", "SVPCPO", "SVPFMS", "SVPGNC", "SVPIBT", "SVPPPO", "SVPRG", "SVPRGE", "SVPRGW", "SVPSMD", "SWABH", "SWABO", "SWAMPER", "SWAMPR", "SWDATT", "SWDCRD", "SWDMGR", "SYSAD2", "SYSAN1", "SYSAN2", "SYSAN3", "SYSCT1", "SYSCT2", "SYSMGR", "SYSPRM", "SYSTE1", "SYSTEC", "TCPSP", "TECAD1", "TECAD2", "TECAD3", "TECADV", "TECAMI", "TECDCS", "TECFSH", "TECISL", "TECREP", "TECSVM", "TECSVR", "TECWH1", "TECWH2", "TELMGR", "TIRTEC", "TLNTMI", "TRAVDRV", "TRKHV", "TRKSV", "TRNANN", "TRNCR", "TRND1", "TRND2", "TRNGSP", "TRNI", "TRNI1", "TRNI2", "TRNI3", "TRNMGR", "TRSRKA", "TRSSVM", "TRVDR", "TRVSDR", "TUBEOP", "TUBESV", "TXACCT", "TXAN", "TXANA", "TXMGR", "TXSR", "TXSV", "VP", "VPCIO", "VPCODV", "VPCON", "VPCRED", "VPCTIN", "VPCTS", "VPENG", "VPEOT", "VPFMS", "VPFMSC", "VPFSHO", "VPFSWT", "VPGBSM", "VPGPES", "VPHR", "VPHSE", "VPIA", "VPIHR", "VPINVR", "VPIVS", "VPMKDV", "VPOD", "VPOSUP", "VPROP", "VPSALC", "VPSCM", "VPSTA", "VPTRRK", "VPWHMI", "WARCRD", "WELD1", "WELD2", "WELD3", "WELDER", "WELLT1", "WELLT2", "WELLT3", "WELPM", "WHATT1", "WHATT2", "WHMGR", "WINDRV", "WIROPR", "WIRTEC", "WKFLC", "WKFMGR", "ZTERM"].map &:to_s
+    respond_to do |format|
+      format.json { render json: vendors }
+    end
+  end
+end

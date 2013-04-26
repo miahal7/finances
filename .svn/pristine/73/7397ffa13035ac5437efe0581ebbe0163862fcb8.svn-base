@@ -1,0 +1,34 @@
+module TransactionsHelper
+  def vendor_name(transaction)
+    transaction.vendor.nil? ? '' : transaction.vendor.name
+  end
+
+  def category_name(transaction)
+    transaction.category.nil? ? '' : transaction.category.name
+  end
+
+  def month_name
+    Session.save_month(@ledger_date)
+    Date.strptime(@ledger_date, '%Y-%m-%d').strftime('%B %Y')
+  end
+
+  def next_month
+    #TODO lock screen on next_month and prev_month click to prevent datatables errors
+    session[:direction] = 'next'
+    Date.strptime(@ledger_date, '%Y-%m-%d').next_month
+  end
+
+  def prev_month
+    session[:direction] = 'prev'
+    Date.strptime(@ledger_date, '%Y-%m-%d').prev_month
+  end
+
+  def ledger_date
+    date = params[:ledger_date].nil? ? session_date : Date.strptime(params[:ledger_date], '%Y-%m-%d')
+    date.strftime('%Y-%m-01')
+  end
+
+  def session_date
+    Session.first.nil? ? Time.now : Session.first.month
+  end
+end

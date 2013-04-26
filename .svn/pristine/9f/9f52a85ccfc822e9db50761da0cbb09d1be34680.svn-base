@@ -1,0 +1,16 @@
+<div id='content-inner' class='content-inner'>
+<%= render partial: 'month' %>
+</div>
+<div id='content-inner-2' class='content-inner-2'></div>
+
+
+
+<div id='prev-month-btn' class='right'>Previous Month</div>
+<div id='next-month-btn' class='left'>Next Month</div>
+<%#= link_to 'Previous Month', transactions_path(ledger_date: prev_month), id: "prev-month-btn", class: 'right' %>
+<%#= link_to 'Next Month', transactions_path(ledger_date: next_month), id: "next-month-btn", class: 'left' %>
+
+<%= link_to 'New Transaction', new_transaction_path, id: 'new_trans_btn' %>
+
+
+<%= javascript_include_tag 'transactions.js' %>

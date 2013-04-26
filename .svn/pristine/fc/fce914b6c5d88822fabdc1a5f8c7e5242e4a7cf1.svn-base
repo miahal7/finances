@@ -1,0 +1,6 @@
+class Vendor < ActiveRecord::Base
+  attr_accessible :category_id, :name
+
+  has_many :transactions
+  has_one :category
+end

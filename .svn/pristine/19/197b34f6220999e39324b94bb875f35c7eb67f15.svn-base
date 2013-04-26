@@ -1,0 +1,33 @@
+.content {
+  padding: 70px 70px 70px 70px;
+  background: #ffffff;
+  margin: 0 auto;
+  width: 80%;
+  overflow:hidden;
+}
+
+.date{
+  position:absolute;
+  color:transparent;
+  background: transparent !important;
+}
+
+.content-inner, .content-inner-2 {
+  position: relative;
+}
+
+h2 {
+  float: right;
+  color: #db4865;
+}
+
+.table-odd {
+  background-color: #f0f0f0;
+  color: #484848;
+}
+
+.table-even {
+  background-color: #ffffff;
+  color: #484848;
+
+}

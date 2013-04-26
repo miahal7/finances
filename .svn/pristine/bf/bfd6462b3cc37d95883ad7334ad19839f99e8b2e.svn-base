@@ -1,0 +1,93 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// the compiled file.
+//
+// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
+// GO AFTER THE REQUIRES BELOW.
+//
+//= require jquery
+//= require jquery_ujs
+//= require jquery.dataTables.min.js
+//= require jquery-ui-1.8.21.custom.min.js
+//= require modernizr-2.5.3.min.js
+//= require jEditable.js
+// require_tree .
+
+$(document).ready(function () {
+    $(".nav-tab").click(function () {
+        activateTab(this);
+    });
+
+    var oTable = $('table').dataTable({
+        "bJQueryUI":true,
+        "asStripeClasses":[ 'table-odd', 'table-even' ]
+    });
+
+    $('.editable').each(function(i){
+        $(this).editable("transactions/" + getTransactionId(this), {
+            type:'text',
+            method: 'PUT',
+//            rows:8,
+            name: $(this).attr('name'),
+//            indicator:"<img src='../images/spinner.gif' />",
+            tooltip:'Click to edit...Enter to save'
+        })
+
+
+    });
+//    oTable.$('td').editable('update', {
+//        name:  {transaction: 'amount'},
+//        "callback":function (sValue, y) {
+//            var aPos = oTable.fnGetPosition(this);
+//            oTable.fnUpdate(sValue, aPos[0], aPos[1]);
+//        },
+//        "submitdata":function (value, settings) {
+//            return {
+//                "row_id":this.parentNode.getAttribute('id'),
+//                "column":oTable.fnGetPosition(this)[2]
+//            };
+//        },
+//        "height":"14px",
+//        "width":"100%"
+//    });
+});
+
+/*Each tr element has an id of '<tr element name>_<transaction id>'.
+* This function removes the prepending '<tr element name>_' from
+* the element id, returning the transaction id*/
+function getTransactionId(tdObj){
+    var id = $(tdObj).attr('id');
+    id = id.substring(id.indexOf("_") + 1, id.length);
+    return id;
+}
+
+function activateTab(tabObj) {
+    $(tabObj).addClass('active');
+}
+
+function updateTransaction(id){
+    id=31;
+    $.ajax({
+        url: '/transactions/' + id,
+        type: 'put',
+        data: {id:31,
+               vendor_name: 'ZZ Grocery',
+               category_name: 'Groceries',
+               transaction: {
+                   amount: 88.88,
+                   recurring: 1,
+                   cleared: 1,
+                   accounting_month: 6,
+                   accounting_year: 2012,
+                   date: '2012-06-06',
+                   classification: 'debit'}},
+        dataType: 'json',
+        success: function(data){
+        }
+    });
+}

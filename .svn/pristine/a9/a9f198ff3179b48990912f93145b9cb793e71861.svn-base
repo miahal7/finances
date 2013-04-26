@@ -1,0 +1,118 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// the compiled file.
+//
+// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
+// GO AFTER THE REQUIRES BELOW.
+//
+//= require jquery
+//= require jquery_ujs
+//= require jquery.dataTables.min.js
+//= require jquery-ui-1.8.21.custom.min.js
+//= require modernizr-2.5.3.min.js
+//= require jEditable.js
+// require_tree .
+
+$(document).ready(function () {
+    var transTable = transTblInit();
+
+    $(".nav-tab").click(function () {
+        activateTab(this);
+    });
+
+    changeHeaderArt(monthName($("#month-name").val()));
+//
+//    $('table tbody td input').live('focus', function (e) {
+//        $(this).select();
+//    });
+//
+//    $('table tbody td.ui-datepicker-inline input').live('focus', function (e) {
+//        $(this).datepicker({
+//            dateFormat:'yy-mm-dd'
+//        }).datepicker("show");
+//    });
+//
+//    $('table tbody td input').live('blur', function (e) {
+//        return false;
+//    });
+//
+//    $('table tbody td.ui-datepicker-inline input').live('change', function (e) {
+//        $(this).parents("form").submit();
+//    });
+
+});
+
+/*Each tr element has an id of '<tr element name>_<transaction id>'.
+* This function removes the prepending '<tr element name>_' from
+* the element id, returning only the transaction id*/
+function getTransactionId(tdObj){
+    var id = $(tdObj).attr('id');
+    id = id.substring(id.indexOf("_") + 1, id.length);
+    return id;
+}
+
+/* Activates tab on proper screen ex:(vendor tab on vendor screen) */
+function activateTab(tabObj) {
+    $(tabObj).addClass('active');
+}
+
+/* Initiate the transactions table */
+function transTblInit() {
+    var oTable =
+        $('table').dataTable({
+            "bJQueryUI":true,
+            "asStripeClasses":[ 'table-odd', 'table-even' ],
+            "aoColumnDefs":[
+                { "sClass":'ui-datepicker-inline', "aTargets":[ 6 ] }
+            ]
+        });
+
+    $('.editable').each(function () {
+        $(this).editable('transactions/' + getTransactionId(this), {
+            type:'text',
+            method:'PUT',
+            name:$(this).attr('name'),
+            tooltip:'Click to edit...Enter to save'
+        })
+    });
+
+    return oTable;
+}
+
+function changeHeaderArt(month){
+    var style = isNaN(month)? month : monthName(month);
+
+    $("header").removeClass($("header").attr('class'));
+
+    $("header").addClass(style.toLowerCase());
+//    alert($("header").attr('class'));
+//    if ($("#month-name").val().indexOf('July') > -1) {
+
+//    }
+
+}
+
+function monthName(month) {
+    var monthNames = [ "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December" ];
+    var monthName;
+
+    if(isNaN(month)){
+        for (var i = 0; i < monthNames.length; i++) {
+            if (month.indexOf(monthNames[i]) > -1) {
+                monthName = monthNames[i];
+                break;
+            }
+        }
+    }
+    else{
+        monthName = monthNames[month]
+    }
+//    alert("monthNames(" + month + ") is returning " + monthName);
+    return monthName;
+}

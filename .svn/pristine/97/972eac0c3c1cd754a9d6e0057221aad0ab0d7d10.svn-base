@@ -1,0 +1,123 @@
+class Transaction < ActiveRecord::Base
+  attr_accessible :date, :accounting_month, :accounting_year, :amount,
+                  :cleared, :recurring, :classification
+
+  has_one :transaction_vendor, dependent: :destroy
+  has_one :transaction_category, dependent: :destroy
+  has_one :vendor, through: :transaction_vendor
+  has_one :category, through: :transaction_category
+
+  #save_all saves the transaction information along with the vendor and transaction_vendor information
+  def self.save_all(transaction, params)
+    begin
+      if transaction.save
+        vendor = Vendor.find_or_initialize_by_name(params[:vendor_name])
+        vendor.save
+
+        transaction_vendor = TransactionVendor.new
+        transaction_vendor.vendor_id = vendor.id
+        transaction_vendor.transaction_id = transaction.id
+        transaction_vendor.save
+
+        category = Category.find_or_initialize_by_name(params[:category_name])
+        category.save
+
+        transaction_category = TransactionCategory.new
+        transaction_category.category_id = category.id
+        transaction_category.transaction_id = transaction.id
+        transaction_category.save
+      else
+        return false
+      end
+    rescue Exception => e
+      logger.info("Error in Transaction.save_all - #{e}")
+      return false
+    end
+  end
+
+  def self.update_all(transaction, params)
+    begin
+      if transaction.update_attributes(params[:transaction])
+        vendor = Vendor.find_or_initialize_by_name(params[:vendor_name])
+        vendor.save
+
+        transaction_vendor = TransactionVendor.new
+        transaction_vendor.vendor_id = vendor.id
+        transaction_vendor.transaction_id = transaction.id
+        transaction_vendor.save
+
+        category = Category.find_or_initialize_by_name(params[:category_name])
+        category.save
+
+        transaction_category = TransactionCategory.new
+        transaction_category.category_id = category.id
+        transaction_category.transaction_id = transaction.id
+        transaction_category.save
+      else
+        return false
+      end
+    rescue Exception => e
+      logger.info("Error in Transaction.save_all - #{e}")
+      return false
+    end
+  end
+
+  # Updates only the attribute that is passed, returns the updated value
+  def self.update_attrs(transaction, params)
+    if params[:amount]
+      if transaction.update_attribute(:amount, params[:amount])
+        return transaction.amount
+      end
+    elsif params[:recurring]
+      if transaction.update_attribute(:recurring, params[:recurring])
+        return transaction.recurring
+      end
+    elsif params[:cleared]
+      if transaction.update_attribute(:cleared, params[:cleared])
+        return transaction.cleared
+      end
+    elsif params[:date]
+      if transaction.update_attribute(:date, params[:date])
+        return transaction.date
+      end
+    elsif params[:ledger_month]
+      if transaction.update_attribute(:ledger_month, params[:ledger_month])
+        return transaction.ledger_month
+      end
+    elsif params[:vendor_name]
+      # Gets vendor then finds the joining transaction_vendor record, then updates
+      # it with the proper vendor_id
+      vendor = Vendor.find_by_name(params[:vendor_name])
+      if vendor.nil?
+        vendor = Vendor.new
+        vendor.name = params[:vendor_name]
+      end
+      if vendor.save
+        tv = TransactionVendor.find_or_initialize_by_transaction_id(transaction.id)
+        tv.vendor_id = vendor.id
+        if tv.save
+          return vendor.name
+        end
+      end
+    elsif params[:category_name]
+      # Gets category then finds the joining transaction_category record, then updates
+      # it with the proper category_id
+      category = Category.find_by_name(params[:category_name])
+      logger.debug("********CATEGORY FOUND #{category.inspect}")
+      if category.nil?
+        category = Category.new
+        category.name = params[:category_name]
+      end
+      if category.save
+        tc = TransactionCategory.find_or_initialize_by_transaction_id(transaction.id)
+        logger.debug("**********TRANSACTION CATEGORY FOUND #{tc.inspect}")
+        tc.category_id = category.id
+        if tc.save
+          return category.name
+        end
+      end
+    end
+    return 'unable to update'
+  end
+
+end
