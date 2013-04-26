@@ -35,6 +35,6 @@ Finances::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  config.assets.precompile += %w( field-actions.js )
+  #config.assets.precompile += %w( field-actions.js )
 
 end
