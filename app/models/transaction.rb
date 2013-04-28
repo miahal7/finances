@@ -19,11 +19,11 @@ class Transaction < ActiveRecord::Base
     sub = []
 
     ledger_add.each do |t|
-      add.push(t.amount) if t.ledger_month <= Date.current
+      add.push(t.amount) if t.ledger_month <= Date.current && !t.amount.nil?
     end
 
     ledger_sub.each do |t|
-      sub.push(t.amount) if t.ledger_month <= Date.current
+      sub.push(t.amount) if t.ledger_month <= Date.current && !t.amount.nil?
     end
 
     add = add.inject(:+) || 0
@@ -46,11 +46,11 @@ class Transaction < ActiveRecord::Base
     sub = []
 
     bank_add.each do |t|
-      add.push(t.amount) if t.ledger_month <= Date.current
+      add.push(t.amount) if t.ledger_month <= Date.current && !t.amount.nil?
     end
 
     bank_sub.each do |t|
-      sub.push(t.amount) if t.ledger_month <= Date.current
+      sub.push(t.amount) if t.ledger_month <= Date.current && !t.amount.nil?
     end
 
     add = add.inject(:+) || 0

@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2998905243">
-    <data-source source="LOCAL" name="Rails Finances: development" product="MySQL" version="5.5.30" jdbc-version="4.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.18 ( Revision: tonci.grgin@oracle.com-20110930151701-jfj14ddfq48ifkfq )" uuid="b0c61c24-1331-41fc-b358-bb728a9c9c35">
-      <extra-name-characters>#@</extra-name-characters>
-      <identifier-quote-string>`</identifier-quote-string>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1/Finances</jdbc-url>
-      <user-name>finances</user-name>
-      <user-password>dfccdfc3dfc4dfcbdfc4dfc9dfcfdfd9</user-password>
-      <libraries>
-        <library>
-          <url>file://$USER_HOME$/.RubyMine40/config/jdbc-drivers/mysql-connector-license.txt</url>
-        </library>
-        <library>
-          <url>file://$USER_HOME$/.RubyMine40/config/jdbc-drivers/mysql-connector-java-5.1.18-bin.jar</url>
-        </library>
-      </libraries>
-    </data-source>
+  <component name="DataSourceManagerImpl" format="xml" hash="2920648825">
     <data-source source="LOCAL" name="Rails Finances: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="b4d4bce6-2511-4dcf-a289-fdce216d7dae">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/Finances</jdbc-url>

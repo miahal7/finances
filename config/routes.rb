@@ -1,4 +1,6 @@
 Finances::Application.routes.draw do
+  devise_for :users
+
   match 'category_name/like' => 'categories#named_like'
   match 'transactions/:id/category_name/named_like' => 'categories#named_like'
   resources :categories

@@ -10,6 +10,13 @@ development:
   username: finances
   password: finances
   host: 127.0.0.1
+#development:
+#  adapter: postgresql
+#  encoding: utf8
+#  database: d6sruu2orlota9
+#  username: umqrxhttudlzll
+#  password: xXubwmbgZldGzz-56tNfQzdrfH
+#  port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

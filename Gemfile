@@ -6,11 +6,13 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'rake', '10.0.4'
-#gem 'sqlite3'
+gem 'mysql2'
+gem 'devise'
 
-platforms :mswin do #windows
-  gem 'mysql2'
-end
+gem "bcrypt-ruby", :require => "bcrypt"
+#platforms :mswin do #windows
+#  gem 'mysql2'
+#end
 
 platforms :ruby do # linux
   gem 'unicorn'
