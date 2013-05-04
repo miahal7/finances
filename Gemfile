@@ -13,7 +13,7 @@ gem 'mysql2'
 #end
 
 platforms :ruby do # linux
-  gem 'unicorn'
+  #gem 'unicorn'
   gem 'pg'
 end
 # Gems used only for assets and not required
