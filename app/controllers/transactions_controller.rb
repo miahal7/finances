@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  http_basic_authenticate_with name: 'sweetiekins', password: 'f1n@nc3'
   # GET /transactions
   # GET /transactions.json
   def index
