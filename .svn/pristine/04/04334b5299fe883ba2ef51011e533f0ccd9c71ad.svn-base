@@ -1,0 +1,29 @@
+<h2>Categories</h2>
+<p id="notice"><%= notice %></p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @categories.each do |category| %>
+      <tr>
+        <td>
+          <%= category.name %>
+          <ul class='inline-block'>
+            <%= button_to 'Delete', category, method: :delete, onclick: "return confirm('Delete '#{category.name}' category?')", class: "btn btn-mini btn-danger", style: "float:right; margin: -33px 0 0 0" %>
+            <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-mini', style: 'float:right; margin: -33px 50px 0 0;' %>
+          </ul>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'New Category', new_category_path, class: 'btn btn-primary', style: 'color: white' %>
+
+<%= javascript_include_tag 'categories.js' %>

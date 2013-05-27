@@ -1,0 +1,29 @@
+<h2>Vendors</h2>
+<p id="notice"><%= notice %></p>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @vendors.each do |vendor| %>
+      <tr>
+        <td>
+          <%= vendor.name %>
+          <ul class='inline-block'>
+            <%= button_to 'Delete', vendor, method: :delete, onclick: "return confirm('Delete '#{vendor.name}' vendor?')", class: "btn btn-mini btn-danger", style: "float:right; margin: -33px 0 0 0" %>
+            <%= link_to 'Edit', edit_vendor_path(vendor), class: 'btn btn-mini', style: 'float:right; margin: -33px 50px 0 0;' %>
+          </ul>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+<%= link_to 'New Vendor', new_vendor_path %>
+
+<%= javascript_include_tag 'vendors.js' %>

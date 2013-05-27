@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @vendor.name %>
+</p>
+
+<!--<p>-->
+  <!--<b>Category:</b>-->
+  <!--<%#= @vendor.vendor_id %>-->
+<!--</p>-->
+
+
+<%= link_to 'Edit', edit_vendor_path(@vendor) %> |
+<%= link_to 'Back', vendors_path %>
+
+<%= javascript_include_tag 'vendors.js' %>
