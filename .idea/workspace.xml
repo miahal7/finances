@@ -144,7 +144,7 @@
       <file leaf-file-name="transaction.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="56" selection-start="3194" selection-end="3194" vertical-scroll-proportion="0.38668224">
+            <state line="96" column="6" selection-start="3201" selection-end="3201" vertical-scroll-proportion="0.33761683">
               <folding />
             </state>
           </provider>
@@ -963,7 +963,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="56" selection-start="3194" selection-end="3194" vertical-scroll-proportion="0.38668224">
+        <state line="96" column="6" selection-start="3201" selection-end="3201" vertical-scroll-proportion="0.33761683">
           <folding />
         </state>
       </provider>

@@ -94,7 +94,7 @@ class Transaction < ActiveRecord::Base
       vendor = p_mo.vendor
       category = p_mo.category
 
-      unless vendor.name.nil?
+      unless vendor.nil?
         logger.info("================== Checking for vendor #{vendor.name} =========================")
 
         this_mo_rec.each do |t_mo|
