@@ -5,7 +5,7 @@ header{
     color:white;
     height:80px;
     margin: -10px -8px 0 -9px;
-    z-index: 999;
+    z-index: 100;
 }
 
 .july{ background-image: url("july-bg.png"); }

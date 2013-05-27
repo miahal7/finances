@@ -12,7 +12,7 @@
 //
 // require jquery
 // require jquery_ujs
-//= require jquery-1.9.1.js
+//= require jquery-1.9.1
 //= require jquery.dataTables.min.js
 //= require jquery-ui-1.10.2.custom.min.js
 // require modernizr-2.5.3.min.js
@@ -22,8 +22,6 @@
 // require_tree .
 
 $(document).ready(function () {
-    transTblInit();
-
 
     $(".nav-tab").click(function () {
         activateTab(this);
@@ -48,23 +46,6 @@ function activateTab(tabObj) {
     $(tabObj).addClass('active');
 }
 
-/* Initiate the transactions table */
-function transTblInit() {
-    var oTable =
-        $('table').dataTable({
-            "bJQueryUI":true,
-            "asStripeClasses":[ 'table-odd', 'table-even' ],
-            "iDisplayLength": 1000,
-//            "aoColumnDefs":[{ "sClass":'ui-datepicker-inline', "aTargets":[ 6 ] }],
-            "bRetrieve":true
-        });
-
-    // initEditable();
-    //initCheckBoxes();
-    //initAutocomplete();
-
-    return oTable;
-}
 
 
 

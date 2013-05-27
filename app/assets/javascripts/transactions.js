@@ -1,6 +1,8 @@
 $(document).ready(function () {
-    //$("#new-transaction-btn, #next-month-btn, #prev-month-btn").button();
 
+
+    transTblInit();
+//
     $("#trans-tab").addClass('active');
 
     $("#prev-month-btn").click(function(){
@@ -18,6 +20,52 @@ $(document).ready(function () {
     });
 
 });
+/* Initiate the transactions table */
+function transTblInit() {
+    //$("#new-transaction-btn, #next-month-btn, #prev-month-btn").button();
+
+//    $.fn.dataTableExt.afnSortData['dom-text'] = function (oSettings, iColumn) {
+//
+//        var aData = [];
+//        $('td:eq(' + iColumn + ') input', oSettings.oApi._fnGetTrNodes(oSettings)).each(function () {
+//            aData.push($(this).val());
+//        });
+//        return aData;
+//    }
+
+//    $.fn.dataTableExt.afnSortData['dom-checkbox'] = function (oSettings, iColumn) {
+//        var aData = [];
+//        $('td:eq(' + iColumn + ') div button:nth-child(2)', oSettings.oApi._fnGetTrNodes(oSettings)).each(function () {
+//            console.log(this);
+//
+//
+//            aData.push($(this).hasClass("active") ? "1" : "0");
+//        });
+//        return aData;
+//    }
+
+//    $("td:nth-child(5) div button:nth-child(3)", this)
+
+
+    var oTable =
+        $('table').dataTable({
+            "bJQueryUI":true,
+            "asStripeClasses": [ 'table-odd', 'table-even' ],
+            "iDisplayLength": 1000,
+            "bRetrieve": true,
+            "aoColumns": [
+                null,
+                null,
+                null,
+                null,
+                null,
+//                { "sSortDataType": 'dom-checkbox' },
+                null
+            ]
+        });
+
+    return oTable;
+}
 
 function newTransaction() {
     var ledgerMonth = $("#current-month").val();
@@ -51,8 +99,8 @@ function newTransaction() {
                    '<button id="deposit_' + id + '" name="deposit" class="btn editable checkbox">' +
                         '<i class="icon-money icon-white"></i> </button>' +
                 '</div>',
-                '<a href="/transactions/' + id + '/edit" id="edit-btn_' + id + '" class="btn btn-mini" style="float:left">Edit</a><br/>' +
-                '<form action="/transactions/' + id + '" class="button_to" method="post" >' +
+//                '<a href="/transactions/' + id + '/edit" id="edit-btn_' + id + '" class="btn btn-mini" style="float:left">Edit</a><br/>' +
+//                '<form action="/transactions/' + id + '" class="button_to" method="post" >' +
                 '<div><input name="_method" type="hidden" value="delete">' +
                 '<input id="delete-btn_' + id + '" type="submit" value="Delete" class"btn btn-mini btn-danger" style="float:right"></div></form>'
             ]);
@@ -60,6 +108,8 @@ function newTransaction() {
             $('#edit-btn_' + id).addClass('btn btn-mini');
             $('#delete-btn_' + id).addClass('btn btn-mini btn-danger');
             inlineTableFormInit();
+
+            $("#vendorName_" + id).focus();
         }
     });
 }

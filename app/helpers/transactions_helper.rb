@@ -14,6 +14,11 @@ module TransactionsHelper
     attr unless attr.nil?
   end
 
+  # Used in transaction _month (inside of table)
+  def display_name(attr)
+    attr.name unless attr.nil?
+  end
+
   # Formats date to a more readable M dd, yyyy
   def format_date(date)
     return date if date.nil?

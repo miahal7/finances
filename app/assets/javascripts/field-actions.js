@@ -16,13 +16,17 @@ function inlineTableFormInit() {
 
 function editableInit() {
     $(".editable")
-        .keydown(function (e) {
+        .on("blur keydown", function (e) {
             if (e.which == 13) {
                 saveSelected($(this).val(), searchType, fieldId);
                 savedText = $(this).val();
                 $(this).blur();
             }
-            else if (e.which == 9) {
+            else if (e.which == 9 && $(this).val().length > 1) {
+                saveSelected($(this).val(), searchType, fieldId);
+                savedText = $(this).val();
+            }
+            if ($.trim($(this).val()) != '' && !$(this).hasClass("typeahead")) {
                 saveSelected($(this).val(), searchType, fieldId);
                 savedText = $(this).val();
             }
@@ -277,13 +281,12 @@ function currencyFormat(str) {
     formatted = (formatted === "$-0.00") ? "$0.00" : formatted;
 
     //TODO: find a regex that will do this
-    if(formatted < 0){
-        formatted = formatted.substring(0,1) + "$" + formatted.substring(1,formatted.length);
+    if (formatted < 0) {
+        formatted = formatted.substring(0, 1) + "$" + formatted.substring(1, formatted.length);
     }
-    else{
+    else {
         formatted = "$" + formatted;
     }
-
 
 
     return formatted;

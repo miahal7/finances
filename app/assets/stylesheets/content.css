@@ -68,15 +68,16 @@ h2 {
 }
 
 #balance-container {
-  position: absolute;
+  position: fixed;
   top: 13px;
   left: 38%;
-  width: 25em;
+  width: 22em;
   border: 1px solid #bbb;
   background-color: white;
   color: #555;
   border-radius: .3em;
   padding: 2px 8px;
+  z-index: 900;
 }
 
 #ledger-balance-container {
@@ -88,4 +89,11 @@ h2 {
   display: inline-block;
   text-align: center;
   float: right;
+}
+
+#new-transaction-btn {
+  position: fixed;
+  z-index: 900;
+  top: 38px;
+  right: 20px;
 }

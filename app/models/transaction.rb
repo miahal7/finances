@@ -66,8 +66,8 @@ class Transaction < ActiveRecord::Base
   # exist in the current month.  This method prevents this by first setting recurring to false on the previous month's
   # matching recurring transaction and then deleting the selected record
   def destroy_and_remove_recurring
-    date = self.date - 1.month
-    vendor_name = self.vendor.name
+    date = self.date.blank?? '' : self.date - 1.month
+    vendor_name = self.vendor.name.blank?? '' : self.vendor.name
 
     prev_mo_rec = Transaction.includes(:vendor).where('vendors.name = ? and date = ?', vendor_name, date).first
     if prev_mo_rec.nil?

@@ -1,29 +1,28 @@
 <h2>Vendors</h2>
-
+<p id="notice"><%= notice %></p>
 <table>
   <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
+  <tr>
+    <th>Name</th>
+
+  </tr>
   </thead>
   <tbody>
-    <% @vendors.each do |vendor| %>
+  <% @vendors.each do |vendor| %>
       <tr>
-        <td><%= vendor.id %></td>
-        <td><%= vendor.name %></td>
-        <td><%= link_to 'Show', vendor %></td>
-        <td><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
-        <td><%= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= vendor.name %>
+          <ul class='inline-block'>
+            <%= button_to 'Delete', vendor, method: :delete, onclick: "return confirm('Delete '#{vendor.name}' vendor?')", class: "btn btn-mini btn-danger", style: "float:right; margin: -33px 0 0 0" %>
+            <%= link_to 'Edit', edit_vendor_path(vendor), class: 'btn btn-mini', style: 'float:right; margin: -33px 50px 0 0;' %>
+          </ul>
+        </td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
-<br />
+<br/>
 
 <%= link_to 'New Vendor', new_vendor_path %>
 

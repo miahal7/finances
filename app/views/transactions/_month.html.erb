@@ -1,16 +1,4 @@
-<% set_balances %>
 
-<div id='balance-container'>
-  <div id='ledger-balance-container'>
-    Heather's Balance:
-    <div id="ledger-balance" data-balance="<%= @ledger_balance %>"><%= number_to_currency(@ledger_balance) %> </div>
-  </div>
-
-  <div id='bank-balance-container'>
-    Bank Balance:
-    <div id="bank-balance" data-balance="<%= @bank_balance %>"><%= number_to_currency(@bank_balance) %> </div>
-  </div>
-</div>
 
 
 <h2 style='float:right;'>Transactions</h2>
@@ -38,10 +26,10 @@
       <tr class='gradeA'>
         <!--<td><%= transaction.id %></td>-->
         <td>
-          <input id='vendorName_<%= transaction.id %>' name='vendor_name' class='editable typeahead input-medium' value="<%= display(transaction.vendor.name) %>" data-provide="typeahead" type='text' autocomplete="off" placeholder="Transaction Name"/>
+          <input id='vendorName_<%= transaction.id %>' name='vendor_name' class='editable typeahead input-medium' value="<%= display_name(transaction.vendor) %>" data-provide="typeahead" type='text' autocomplete="off" placeholder="Transaction Name"/>
         </td>
         <td>
-          <input id='categoryName_<%= transaction.id %>' name='category_name' class='editable typeahead input-medium' value="<%= display(transaction.category.name) %>" data-provide="typeahead" type='text' autocomplete="off" placeholder="Category Name"/>
+          <input id='categoryName_<%= transaction.id %>' name='category_name' class='editable typeahead input-medium' value="<%= display_name(transaction.category) %>" data-provide="typeahead" type='text' autocomplete="off" placeholder="Category Name"/>
         </td>
         <td>
           <div class="input-prepend">
@@ -57,7 +45,7 @@
         </td>
         <td>
           <div class="btn-group" data-toggle="buttons-checkbox">
-            <button id='cleared_<%= transaction.id %>' name='cleared' <%= checked(transaction.cleared) %> value='<%= transaction.cleared %>' class="btn  editable checkbox <%= active(transaction, 'cleared') %>">
+            <button id='cleared_<%= transaction.id %>' name='cleared' <%= checked(transaction.cleared) %> value='<%= transaction.cleared %>' class="btn editable checkbox <%= active(transaction, 'cleared') %>">
               <i class='icon-check icon-white'></i></button>
 
             <button id='recurring_<%= transaction.id %>' name='recurring' <%= checked(transaction.recurring) %> value='<%= transaction.recurring %>' class="btn editable checkbox <%= active(transaction, 'recurring') %>">
@@ -68,8 +56,8 @@
           </div>
         </td>
         <td>
-          <%= link_to 'Edit', edit_transaction_path(transaction), class: "btn btn-mini", style: "float:left" %>
-          <%= button_to 'Delete', transaction, method: :delete, onclick: "return confirm('Delete #{transaction.vendor.name} transaction?')", class: "btn btn-mini btn-danger", style: "float:right" %>
+          <%#= link_to 'Edit', edit_transaction_path(transaction), class: "btn btn-mini", style: "float:left; margin-left: -20px;" %>
+          <%= button_to 'Delete', transaction, method: :delete, onclick: "return confirm('Delete #{display_name(transaction.vendor)} transaction?')", class: "btn btn-mini btn-danger", style: "float:right;" %>
       </tr>
   <% end %>
   </tbody>
