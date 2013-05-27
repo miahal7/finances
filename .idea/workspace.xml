@@ -25,7 +25,7 @@
     <file path="/application.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367693568882" ignored="false" />
     <file path="/transactions.js" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369688299322" ignored="false" />
     <file path="$PROJECT_DIR$/app/assets/javascripts/jQuery-Currency-master/demo/index.html" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1365806615688" ignored="false" />
-    <file path="/transaction.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369690142551" ignored="false" />
+    <file path="/transaction.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369690611890" ignored="false" />
     <file path="/20130411235035_replace_classification_with_deposit.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1365724262117" ignored="false" />
     <file path="/20130411234534_change_transaction_classification_to_bool.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1365724188213" ignored="false" />
     <file path="/content.css" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369680559690" ignored="false" />
@@ -144,7 +144,7 @@
       <file leaf-file-name="transaction.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="6" selection-start="3201" selection-end="3201" vertical-scroll-proportion="0.33761683">
+            <state line="96" column="61" selection-start="3256" selection-end="3256" vertical-scroll-proportion="0.41121495">
               <folding />
             </state>
           </provider>
@@ -963,7 +963,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="6" selection-start="3201" selection-end="3201" vertical-scroll-proportion="0.33761683">
+        <state line="96" column="61" selection-start="3256" selection-end="3256" vertical-scroll-proportion="0.41121495">
           <folding />
         </state>
       </provider>
