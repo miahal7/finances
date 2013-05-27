@@ -66,8 +66,8 @@ class Transaction < ActiveRecord::Base
   # exist in the current month.  This method prevents this by first setting recurring to false on the previous month's
   # matching recurring transaction and then deleting the selected record
   def destroy_and_remove_recurring
-    date = self.date.blank?? '' : self.date - 1.month
-    vendor_name = self.vendor.name.blank?? '' : self.vendor.name
+    date = self.date.blank? ? '' : self.date - 1.month
+    vendor_name = self.vendor.name.blank? ? '' : self.vendor.name
 
     prev_mo_rec = Transaction.includes(:vendor).where('vendors.name = ? and date = ?', vendor_name, date).first
     if prev_mo_rec.nil?
@@ -93,35 +93,38 @@ class Transaction < ActiveRecord::Base
 
       vendor = p_mo.vendor
       category = p_mo.category
-      logger.info("================== Checking for vendor #{vendor.name} =========================")
 
-      this_mo_rec.each do |t_mo|
-        logger.info(" ==== compare to #{t_mo.vendor.name}")
-        if vendor.name == t_mo.vendor.name
-          logger.info("    -- MATCH, not adding another #{t_mo.vendor.name} to db")
-          match = true
-          break
+      unless vendor.blank?
+        logger.info("================== Checking for vendor #{vendor.name} =========================")
+
+        this_mo_rec.each do |t_mo|
+          logger.info(" ==== compare to #{t_mo.vendor.name}")
+          if vendor.name == t_mo.vendor.name
+            logger.info("    -- MATCH, not adding another #{t_mo.vendor.name} to db")
+            match = true
+            break
+          end
         end
-      end
 
-      if !match
-        logger.info("    -- no match, adding new transaction to ledger #{p_mo.vendor.name}")
+        if !match
+          logger.info("    -- no match, adding new transaction to ledger #{p_mo.vendor.name}")
 
-        new_rec_date = p_mo.date + 1.month
+          new_rec_date = p_mo.date + 1.month
 
 
-        new_rec = Transaction.new
-        new_rec.amount = p_mo.amount
-        new_rec.date = new_rec_date
-        new_rec.cleared = false
-        new_rec.recurring = p_mo.recurring
-        new_rec.ledger_month = date
-        new_rec.deposit = p_mo.deposit
-        new_rec.vendor = vendor
-        new_rec.category = category
-        new_rec.save
-        logger.info("THE NEW RECURRING TRANSACTION CREATED IS -> #{new_rec.inspect}")
-        #Transaction.save_all(new_rec, params)
+          new_rec = Transaction.new
+          new_rec.amount = p_mo.amount
+          new_rec.date = new_rec_date
+          new_rec.cleared = false
+          new_rec.recurring = p_mo.recurring
+          new_rec.ledger_month = date
+          new_rec.deposit = p_mo.deposit
+          new_rec.vendor = vendor
+          new_rec.category = category
+          new_rec.save
+          logger.info("THE NEW RECURRING TRANSACTION CREATED IS -> #{new_rec.inspect}")
+          #Transaction.save_all(new_rec, params)
+        end
       end
 
     end
