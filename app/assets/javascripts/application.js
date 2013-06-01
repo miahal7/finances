@@ -13,6 +13,7 @@
 // require jquery
 // require jquery_ujs
 //= require jquery-1.9.1
+// require jquery-1.8.3.min
 //= require jquery.dataTables.min.js
 //= require jquery-ui-1.10.2.custom.min.js
 // require modernizr-2.5.3.min.js
@@ -22,7 +23,6 @@
 // require_tree .
 
 $(document).ready(function () {
-
     $(".nav-tab").click(function () {
         activateTab(this);
     });

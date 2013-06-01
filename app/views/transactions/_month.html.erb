@@ -19,6 +19,10 @@
     <th>Date</th>
     <th></th>
     <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -56,8 +60,16 @@
           </div>
         </td>
         <td>
+
           <%#= link_to 'Edit', edit_transaction_path(transaction), class: "btn btn-mini", style: "float:left; margin-left: -20px;" %>
           <%= button_to 'Delete', transaction, method: :delete, onclick: "return confirm('Delete #{display_name(transaction.vendor)} transaction?')", class: "btn btn-mini btn-danger", style: "float:right;" %>
+        </td>
+        <td><%= display_name(transaction.vendor) %></td>
+        <td><%= display_name(transaction.category) %></td>
+        <td><%= transaction.amount %></td>
+        <td><%= transaction.date %></td>
+        <td><%= transaction.recurring %></td>
+
       </tr>
   <% end %>
   </tbody>

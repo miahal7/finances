@@ -24,25 +24,27 @@ $(document).ready(function () {
 function transTblInit() {
     //$("#new-transaction-btn, #next-month-btn, #prev-month-btn").button();
 
-//    $.fn.dataTableExt.afnSortData['dom-text'] = function (oSettings, iColumn) {
-//
-//        var aData = [];
-//        $('td:eq(' + iColumn + ') input', oSettings.oApi._fnGetTrNodes(oSettings)).each(function () {
-//            aData.push($(this).val());
-//        });
-//        return aData;
-//    }
+    $.fn.dataTableExt.afnSortData['dom-text'] = function (oSettings, iColumn) {
 
-//    $.fn.dataTableExt.afnSortData['dom-checkbox'] = function (oSettings, iColumn) {
-//        var aData = [];
-//        $('td:eq(' + iColumn + ') div button:nth-child(2)', oSettings.oApi._fnGetTrNodes(oSettings)).each(function () {
-//            console.log(this);
-//
-//
-//            aData.push($(this).hasClass("active") ? "1" : "0");
-//        });
-//        return aData;
-//    }
+        var aData = [];
+        $('td:eq(' + iColumn + ') input', oSettings.oApi._fnGetTrNodes(oSettings)).each(function () {
+            aData.push($(this).val());
+        });
+        return aData.sort();
+    }
+
+    $.fn.dataTableExt.afnSortData['dom-checkbox'] = function (oSettings, iColumn) {
+        var aData = [];
+        $('td:eq(' + iColumn + ') div button:nth-child(2)', oSettings.oApi._fnGetTrNodes(oSettings)).each(function () {
+            console.log(this);
+
+
+            aData.push($(this).val() == "true" ? "1" : "0");
+        });
+        console.log(aData);
+
+        return aData;
+    }
 
 //    $("td:nth-child(5) div button:nth-child(3)", this)
 
@@ -53,14 +55,21 @@ function transTblInit() {
             "asStripeClasses": [ 'table-odd', 'table-even' ],
             "iDisplayLength": 1000,
             "bRetrieve": true,
+            "aaSorting": [
+                [ 10, "desc" ], [9, "asc"], [6, "asc"], [8, "asc"]     //recurring, date, vendor name, amount
+            ],
             "aoColumns": [
-                null,
-                null,
-                null,
-                null,
-                null,
-//                { "sSortDataType": 'dom-checkbox' },
-                null
+                { "iDataSort": 6 },  //vendor name input
+                { "iDataSort": 7 },  //category name input
+                { "iDataSort": 8 },  //amount input
+                { "iDataSort": 9 },  //date input
+                { "iDataSort": 10 }, //cleared/recurring/deposit checkboxes
+                null,  //delete button
+                { "bSearchable": true, "bVisible": false }, //vendor name
+                { "bSearchable": true, "bVisible": false }, //category name
+                { "bSearchable": true, "bVisible": false }, //amount
+                { "bSearchable": true, "bVisible": false }, //date
+                { "bSearchable": true, "bVisible": false }  //recurring
             ]
         });
 
@@ -100,7 +109,7 @@ function newTransaction() {
                         '<i class="icon-money icon-white"></i> </button>' +
                 '</div>',
 //                '<a href="/transactions/' + id + '/edit" id="edit-btn_' + id + '" class="btn btn-mini" style="float:left">Edit</a><br/>' +
-//                '<form action="/transactions/' + id + '" class="button_to" method="post" >' +
+                '<form action="/transactions/' + id + '" class="button_to" method="post" >' +
                 '<div><input name="_method" type="hidden" value="delete">' +
                 '<input id="delete-btn_' + id + '" type="submit" value="Delete" class"btn btn-mini btn-danger" style="float:right"></div></form>'
             ]);
