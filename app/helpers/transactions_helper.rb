@@ -19,6 +19,18 @@ module TransactionsHelper
     attr.name unless attr.nil?
   end
 
+  def cleared(bool)
+    bool ? 'cleared' : 'pending'
+  end
+
+  def recurring(bool)
+    bool ? 'recurring' : 'one time'
+  end
+
+  def deposit(bool)
+    bool ? 'deposit' : 'deduction'
+  end
+
   # Formats date to a more readable M dd, yyyy
   def format_date(date)
     return date if date.nil?

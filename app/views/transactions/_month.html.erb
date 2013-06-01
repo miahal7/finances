@@ -23,6 +23,9 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -68,7 +71,9 @@
         <td><%= display_name(transaction.category) %></td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.date %></td>
-        <td><%= transaction.recurring %></td>
+        <td><%= recurring(transaction.recurring) %></td>
+        <td><%= cleared(transaction.cleared) %></td>
+        <td><%= deposit(transaction.deposit) %></td>
 
       </tr>
   <% end %>

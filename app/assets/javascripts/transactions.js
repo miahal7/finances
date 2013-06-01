@@ -69,7 +69,9 @@ function transTblInit() {
                 { "bSearchable": true, "bVisible": false }, //category name
                 { "bSearchable": true, "bVisible": false }, //amount
                 { "bSearchable": true, "bVisible": false }, //date
-                { "bSearchable": true, "bVisible": false }  //recurring
+                { "bSearchable": true, "bVisible": false }, //recurring
+                { "bSearchable": true, "bVisible": false }, //cleared
+                { "bSearchable": true, "bVisible": false }  //deposit
             ]
         });
 
