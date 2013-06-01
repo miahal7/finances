@@ -78,7 +78,7 @@ class Transaction < ActiveRecord::Base
     end
   end
 
-  ##When recurring is unchecked and the page is reloaded, the recurring elements from the previous month are duplicated
+  # Duplicates the previous month's recurring elements to the next month if they don't already exist
   def self.duplicate_recurring(date)
     start_time = Time.now
     date = Date.strptime(date, '%Y-%m-%d')
@@ -94,15 +94,17 @@ class Transaction < ActiveRecord::Base
       vendor = p_mo.vendor
       category = p_mo.category
 
-      unless vendor.nil? || vendor.blank? || vendor.name.nil? || vendor.name.blank?
+      unless vendor.nil?
         logger.info("================== Checking for vendor #{vendor.name} =========================")
 
         this_mo_rec.each do |t_mo|
-          logger.info(" ==== compare to #{t_mo.vendor.name}")
-          if vendor.name == t_mo.vendor.name
-            logger.info("    -- MATCH, not adding another #{t_mo.vendor.name} to db")
-            match = true
-            break
+          if !t_mo.vendor.nil?
+            logger.info(" ==== compare to #{t_mo.vendor.name}")
+            if vendor.name == t_mo.vendor.name
+              logger.info("    -- MATCH, not adding another #{t_mo.vendor.name} to db")
+              match = true
+              break
+            end
           end
         end
 
