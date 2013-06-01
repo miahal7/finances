@@ -297,7 +297,7 @@ function checkBoxStyleHandler(field, checked) {
     var name = $(field).attr("name");
     var child = $(field).children();
     var parent = $(field).closest("tr");
-    alert(parent.classList);
+
     if (!checked) {
 //        parent.removeClass("red");
         child.removeClass("icon-white");
