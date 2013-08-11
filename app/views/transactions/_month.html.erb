@@ -9,6 +9,7 @@
 <%= hidden_field_tag 'prev-month', prev_month, id: 'prev-month' %>
 <%= hidden_field_tag 'next-month', next_month, id: 'next-month' %>
 <%= hidden_field_tag 'current-month', @ledger_date %>
+<%= hidden_field_tag 'last-selected-element', '' %>
 <table class="display transaction-table" style='padding:100px 0'>
   <thead>
   <tr>
@@ -80,6 +81,7 @@
   </tbody>
 </table>
 
+<div id="nameTooltip" data-toggle="tooltip" title="Name must be greater than 2 characters"></div>
 <br/>
 
 <%= javascript_include_tag 'field-actions' %>

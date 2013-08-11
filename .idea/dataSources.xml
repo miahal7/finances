@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" hash="2085862317">
-    <data-source source="LOCAL" name="Rails Finances: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="f2f0ba5b-46e4-474f-bbf2-2f92e5c6037e">
+    <data-source source="LOCAL" name="Rails Finances: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="3ee5d553-d7e9-4c0b-9732-b49c68d7f488">
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/Finances</jdbc-url>
       <user-name>finances</user-name>

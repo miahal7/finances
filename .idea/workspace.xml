@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/assets/javascripts/field-actions.js" line="112" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/app/assets/javascripts/field-actions.js" line="322" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/app/assets/javascripts/field-actions.js" line="151" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/app/assets/javascripts/field-actions.js" line="38" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1036a506-d33a-41f0-bd10-258cea537e98" name="Default" comment="">
@@ -21,38 +21,37 @@
     </list>
     <ignored path="Finances.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/routes.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367693323978" ignored="false" />
-    <file path="/new.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367692633920" ignored="false" />
-    <file path="/users_controller.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367692263814" ignored="false" />
-    <file path="/user.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367692152329" ignored="false" />
-    <file path="/20130504165959_drop_users_table.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367686842618" ignored="false" />
-    <file path="/test.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367018676855" ignored="false" />
-    <file path="/production.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367018659430" ignored="false" />
-    <file path="/database.yml" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367017212214" ignored="false" />
-    <file path="/Gemfile" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367679424749" ignored="false" />
-    <file path="/Procfile" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367013103764" ignored="false" />
-    <file path="/20130425002001_change_booleans_default_to_false.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1366849413254" ignored="false" />
-    <file path="/transactions_controller.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369678581206" ignored="false" />
-    <file path="/application.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367693568882" ignored="false" />
-    <file path="/transactions.js" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1370116401376" ignored="false" />
-    <file path="$PROJECT_DIR$/app/assets/javascripts/jQuery-Currency-master/demo/index.html" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1365806615688" ignored="false" />
-    <file path="/transaction.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1370104117654" ignored="false" />
-    <file path="/20130411235035_replace_classification_with_deposit.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1365724262117" ignored="false" />
-    <file path="/20130411234534_change_transaction_classification_to_bool.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1365724188213" ignored="false" />
-    <file path="/content.css" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369680559690" ignored="false" />
-    <file path="/transactions_helper.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1370116390046" ignored="false" />
-    <file path="/field-actions.js" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1370111088729" ignored="false" />
-    <file path="/index.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369680475122" ignored="false" />
-    <file path="/_month.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1370116198755" ignored="false" />
-    <file path="/show.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369674133219" ignored="false" />
-    <file path="/_form.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369674321653" ignored="false" />
-    <file path="/vendors_controller.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369678122368" ignored="false" />
-    <file path="/categories_controller.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369678260383" ignored="false" />
-    <file path="/application.js" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1370111427457" ignored="false" />
-    <file path="/a.dummy" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369683614867" ignored="false" />
+    <file path="/transactions.css.scss" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1376170881461" ignored="false" />
     <file path="/Dummy.txt" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369688901476" ignored="false" />
-    <file path="$PROJECT_DIR$/public/assets/application.js" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369689865672" ignored="false" />
-    <file path="/transactions.css.scss" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1370110653511" ignored="false" />
+    <file path="/a.dummy" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369683614867" ignored="false" />
+    <file path="/application.js" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1376173198206" ignored="false" />
+    <file path="/categories_controller.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369678260383" ignored="false" />
+    <file path="/vendors_controller.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369678122368" ignored="false" />
+    <file path="/_form.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369674321653" ignored="false" />
+    <file path="/show.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369674133219" ignored="false" />
+    <file path="/_month.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1376247446491" ignored="false" />
+    <file path="/index.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369680475122" ignored="false" />
+    <file path="/field-actions.js" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1376246971175" ignored="false" />
+    <file path="/transactions_helper.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1370116390046" ignored="false" />
+    <file path="/content.css" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369680559690" ignored="false" />
+    <file path="/20130411234534_change_transaction_classification_to_bool.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1365724188213" ignored="false" />
+    <file path="/20130411235035_replace_classification_with_deposit.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1365724262117" ignored="false" />
+    <file path="/transaction.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1370104117654" ignored="false" />
+    <file path="$PROJECT_DIR$/app/assets/javascripts/jQuery-Currency-master/demo/index.html" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1365806615688" ignored="false" />
+    <file path="/transactions.js" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1376167375902" ignored="false" />
+    <file path="/application.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367693568882" ignored="false" />
+    <file path="/transactions_controller.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1369678581206" ignored="false" />
+    <file path="/20130425002001_change_booleans_default_to_false.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1366849413254" ignored="false" />
+    <file path="/Procfile" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367013103764" ignored="false" />
+    <file path="/Gemfile" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367679424749" ignored="false" />
+    <file path="/database.yml" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367017212214" ignored="false" />
+    <file path="/production.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367018659430" ignored="false" />
+    <file path="/test.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367018676855" ignored="false" />
+    <file path="/20130504165959_drop_users_table.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367686842618" ignored="false" />
+    <file path="/user.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367692152329" ignored="false" />
+    <file path="/users_controller.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367692263814" ignored="false" />
+    <file path="/new.html.erb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367692633920" ignored="false" />
+    <file path="/routes.rb" changelist="1036a506-d33a-41f0-bd10-258cea537e98" time="1367693323978" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +79,7 @@
       <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="9" selection-start="177" selection-end="177" vertical-scroll-proportion="0.260177">
+            <state line="9" column="9" selection-start="177" selection-end="177" vertical-scroll-proportion="0.23924051">
               <folding />
             </state>
           </provider>
@@ -89,16 +88,7 @@
       <file leaf-file-name="_month.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/transactions/_month.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="16" selection-start="3742" selection-end="3742" vertical-scroll-proportion="-15.633333">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transactions.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/transactions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="124" selection-start="2502" selection-end="2502" vertical-scroll-proportion="0.0">
+            <state line="11" column="48" selection-start="398" selection-end="398" vertical-scroll-proportion="-7.7">
               <folding />
             </state>
           </provider>
@@ -107,7 +97,72 @@
       <file leaf-file-name="transactions_helper.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/helpers/transactions_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="31" selection-start="551" selection-end="551" vertical-scroll-proportion="0.0">
+            <state line="22" column="31" selection-start="544" selection-end="551" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transactions.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/transactions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="127" column="21" selection-start="5842" selection-end="5842" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transactions.css.scss" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/transactions.css.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="20" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="89" column="39" selection-start="2743" selection-end="2743" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="13" selection-start="30" selection-end="30" vertical-scroll-proportion="-2.1">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transactions_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/transactions_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="36" selection-start="1970" selection-end="1970" vertical-scroll-proportion="-6.48">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transaction.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="251" column="15" selection-start="8391" selection-end="8391" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="field-actions.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/field-actions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="11" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -130,14 +185,14 @@
         <option value="$PROJECT_DIR$/config/application.rb" />
         <option value="$PROJECT_DIR$/app/controllers/transactions_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/transaction.rb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/transactions.css.scss" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/vendors.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/categories.js" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/field-actions.js" />
-        <option value="$PROJECT_DIR$/app/views/transactions/_month.html.erb" />
         <option value="$PROJECT_DIR$/app/helpers/transactions_helper.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/transactions.js" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/transactions.css.scss" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+        <option value="$PROJECT_DIR$/app/views/transactions/_month.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/field-actions.js" />
         <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
@@ -150,9 +205,8 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="685" />
-    <option name="width" value="1235" />
-    <option name="height" value="1032" />
+    <option name="width" value="1100" />
+    <option name="height" value="978" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -180,6 +234,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -208,20 +263,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Finances" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Finances" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -248,25 +289,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="transactions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Finances" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Finances" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="layouts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -366,21 +389,20 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/KeyTask/KeyTask" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Sandbox" />
     <property name="FullScreen" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -618,11 +640,11 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Query Language Console.Default" />
-      <item index="1" class="java.lang.String" itemvalue="Rake.test" />
-      <item index="2" class="java.lang.String" itemvalue="Rake.spec" />
-      <item index="3" class="java.lang.String" itemvalue="Rails.Production: Finances" />
-      <item index="4" class="java.lang.String" itemvalue="Rails.Development: Finances" />
+      <item index="0" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="1" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="2" class="java.lang.String" itemvalue="Rails.Production: Finances" />
+      <item index="3" class="java.lang.String" itemvalue="Rails.Development: Finances" />
+      <item index="4" class="java.lang.String" itemvalue="Query Language Console.Default" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -765,7 +787,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="685" y="0" width="1235" height="1032" extended-state="0" />
+    <frame x="0" y="0" width="1100" height="978" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -773,11 +795,11 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35907972" sideWeight="0.6451965" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2857143" sideWeight="0.64635605" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869378" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3548035" sideWeight="0.9829325" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35364395" sideWeight="0.9829325" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963374" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.6703663" order="3" side_tool="false" content_ui="tabs" />
@@ -854,119 +876,107 @@
     <MESSAGE value="&#10;" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
+    <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/transactions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="23" selection-start="2615" selection-end="2615" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/header.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="4" selection-start="140" selection-end="140" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="86" selection-start="2991" selection-end="2991" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="916" selection-end="916" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/vendors.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/content.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="57" selection-start="984" selection-end="984" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendors.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="30" selection-end="207" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/categories.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="67" selection-start="250" selection-end="250" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://C:/Ruby200/lib/ruby/2.0.0/rdoc/ri/driver.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="793" column="6" selection-start="19460" selection-end="19460" vertical-scroll-proportion="2.559863" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/transactions_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="31" selection-start="544" selection-end="551" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/transactions.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="25" selection-start="583" selection-end="583" vertical-scroll-proportion="0.0">
+        <state line="29" column="20" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/content.css">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="57" selection-start="984" selection-end="984" vertical-scroll-proportion="0.0">
+        <state line="89" column="39" selection-start="2743" selection-end="2743" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="13" selection-start="30" selection-end="30" vertical-scroll-proportion="-2.1">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/vendors.js">
+    <entry file="file://$PROJECT_DIR$/app/controllers/transactions_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="30" selection-end="207" vertical-scroll-proportion="0.0">
+        <state line="72" column="36" selection-start="1970" selection-end="1970" vertical-scroll-proportion="-6.48">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/categories.js">
+    <entry file="file://$PROJECT_DIR$/app/models/transaction.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="67" selection-start="250" selection-end="250" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/field-actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="300" column="54" selection-start="9472" selection-end="9472" vertical-scroll-proportion="0.33652696">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Ruby200/lib/ruby/2.0.0/rdoc/ri/driver.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="793" column="6" selection-start="19460" selection-end="19460" vertical-scroll-proportion="2.559863">
+        <state line="251" column="15" selection-start="8391" selection-end="8391" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/transactions/_month.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="16" selection-start="3742" selection-end="3742" vertical-scroll-proportion="-15.633333">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/transactions_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="31" selection-start="551" selection-end="551" vertical-scroll-proportion="0.0">
+        <state line="11" column="48" selection-start="398" selection-end="398" vertical-scroll-proportion="-7.7">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/transactions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="124" selection-start="2502" selection-end="2502" vertical-scroll-proportion="0.0">
+        <state line="127" column="21" selection-start="5842" selection-end="5842" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/field-actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="11" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="9" selection-start="177" selection-end="177" vertical-scroll-proportion="0.260177">
+        <state line="9" column="9" selection-start="177" selection-end="177" vertical-scroll-proportion="0.23924051">
           <folding />
         </state>
       </provider>

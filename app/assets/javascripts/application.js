@@ -79,10 +79,13 @@ function saveSelected(data, searchField, fieldId) {
 
     // params[searchField] used instead of params = { searchField: data }
     // because searchField is a variable of either vendor_name or category_name
-    params[searchField] = data;
+    params[searchField] = $.trim(data);
 
     $.ajax({
         url:"transactions/" + fieldId,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+        },
         dataType:"json",
         type:"PUT",
         data:params

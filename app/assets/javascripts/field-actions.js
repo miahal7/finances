@@ -15,32 +15,65 @@ function inlineTableFormInit() {
 }
 
 function editableInit() {
+    var position;
+    var timeout;
     $(".editable")
         .on("blur keydown", function (e) {
-            if (e.which == 13) {
+            if (e.which == 13) { //If enter key pressed
+                if ($.trim($(this).val()).length > 2) { //If length > 2 save to database
+                    saveSelected($(this).val(), searchType, fieldId);
+                    savedText = $(this).val();
+                    $(this).blur();
+                }
+            }
+            else if (e.which == 9) {//If tab key pressed
+                if ($.trim($(this).val()).length > 2) { //If length > 2 save to database
+//                    saveSelected($(this).val(), searchType, fieldId);
+                    savedText = $(this).val();
+                }
+            }
+            if ($.trim($(this).val()) != '' && !$(this).hasClass("typeahead")) {  //This is for amount and date
                 saveSelected($(this).val(), searchType, fieldId);
                 savedText = $(this).val();
-                $(this).blur();
             }
-            else if (e.which == 9 && $(this).val().length > 1) {
-                saveSelected($(this).val(), searchType, fieldId);
-                savedText = $(this).val();
-            }
-            if ($.trim($(this).val()) != '' && !$(this).hasClass("typeahead")) {
-                saveSelected($(this).val(), searchType, fieldId);
-                savedText = $(this).val();
-            }
-        })
-        .blur(function () {
-            $(this).val(savedText);
-        })
-        .on("focus", function () {
-            savedText = $(this).val();
         })
         .on("click focus", function () {
             fieldId = getTransactionId(this);
             searchType = $(this).prop("name");
+        })
+        .on("blur", function(){  //When user clicks out of field
+            if ($.trim($(this).val()).length > 2) {
+                var thisval = $.trim($(this).val());
+
+                /*This one is tough.  I want whatever is in the field to be saved to the db when the
+                * field loses focus, but the field loses focus when an item is selected from the
+                * typeahead element.  This results in whatever was in the field when the uses selects
+                * from the typeahead being saved in the db.  The below currently fixes that problem,
+                * but now it will not save when the user clicks onto another field. (Saves when user
+                 * clicks off of all fields entirely or by pressing enter.)*/
+                setTimeout(function () {
+                    if (!$("#" + toCamelCase(searchType) + fieldId).is(":focus")) {
+                        saveSelected(thisval, searchType, fieldId);
+                        savedText = thisval;
+
+                    }
+                    else {
+                        console.log("NOT Saving because this is still focus " + toCamelCase(searchType) + fieldId);
+//                        $("#last-selected-element").data('lastSelected').val("Not changed");
+                    }
+
+                }, 100);
+            }
+        }).focusout(function () {
+            $("#last-selected-element").data('lastSelected', $(this));
+            console.log("set last selected element to " + $(this).val());
         });
+
+}
+
+function toCamelCase(str) {
+    var i = str.indexOf("_");
+    return str.substring(0, i) + "Name_";
 }
 
 function appendDecimalOnSave(field) {
@@ -117,6 +150,8 @@ function typeaheadInit() {
             },
             minLength: 1,
             updater: function (item) {
+//                console.log("In updater");
+//                console.log("The value of the field is " + savedText);
                 saveSelected(item, searchType, fieldId);
                 savedText = item;
                 return item;
