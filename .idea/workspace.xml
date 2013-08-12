@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1036a506-d33a-41f0-bd10-258cea537e98" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/content.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/content.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/development.log" afterPath="$PROJECT_DIR$/log/development.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/field-actions.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/field-actions.js" />
@@ -72,14 +71,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_month.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="_month.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/transactions/_month.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="4" selection-start="51" selection-end="51" vertical-scroll-proportion="0.1446281">
+            <state line="16" column="54" selection-start="525" selection-end="525" vertical-scroll-proportion="-11.2">
               <folding>
                 <element signature="e#51#70#0" expanded="true" />
                 <element signature="e#443#466#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="13" selection-start="177" selection-end="177" vertical-scroll-proportion="0.25714287">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -189,13 +197,13 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/categories.js" />
         <option value="$PROJECT_DIR$/app/helpers/transactions_helper.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/field-actions.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/content.css" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/transactions.js" />
         <option value="$PROJECT_DIR$/app/views/transactions/index.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/transactions.css.scss" />
         <option value="$PROJECT_DIR$/app/views/transactions/_month.html.erb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -947,13 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="8" selection-start="176" selection-end="176" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/header.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -998,11 +999,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/transactions/_month.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="4" selection-start="51" selection-end="51" vertical-scroll-proportion="0.1446281">
+        <state line="16" column="54" selection-start="525" selection-end="525" vertical-scroll-proportion="-11.2">
           <folding>
             <element signature="e#51#70#0" expanded="true" />
             <element signature="e#443#466#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="177" selection-end="177" vertical-scroll-proportion="0.25714287">
+          <folding />
         </state>
       </provider>
     </entry>
