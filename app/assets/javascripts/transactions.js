@@ -13,8 +13,8 @@ $(document).ready(function () {
         changeMonth($("#next-month").val(), 'left');
     });
 
-    $("#new-transaction-btn").click(function () {
-        console.log("new-transaction-btn clicked and will save a transaction in the" +
+    $("#new-trans-btn").click(function () {
+        console.log("new-trans-btn clicked and will save a transaction in the" +
             " month of " + $("#current-month").val());
         newTransaction();
     });
@@ -22,7 +22,7 @@ $(document).ready(function () {
 });
 /* Initiate the transactions table */
 function transTblInit() {
-    //$("#new-transaction-btn, #next-month-btn, #prev-month-btn").button();
+    //$("#new-trans-btn, #next-month-btn, #prev-month-btn").button();
 
     $.fn.dataTableExt.afnSortData['dom-text'] = function (oSettings, iColumn) {
 
@@ -140,7 +140,10 @@ function changeMonth(ledger_month, direction){
         data: { ledger_date: ledger_month },
         method: "GET",
         success: function(html){
-            slideOnX($("#content-inner"), $("#content-inner-2"), html, direction);
+            $("#content-inner").html("").hide();
+            $("#content-inner-2").html(html).show();
+            transTblInit();
+//            slideOnX($("#content-inner"), $("#content-inner-2"), html, direction);
 //            changeHeaderArt(month);
         }
     });

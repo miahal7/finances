@@ -91,7 +91,7 @@ h2 {
   float: right;
 }
 
-#new-transaction-btn {
+#action-btn-header {
   position: fixed;
   z-index: 900;
   top: 38px;

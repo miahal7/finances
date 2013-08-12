@@ -15,8 +15,6 @@ function inlineTableFormInit() {
 }
 
 function editableInit() {
-    var position;
-    var timeout;
     $(".editable")
         .on("blur keydown", function (e) {
             if (e.which == 13) { //If enter key pressed
@@ -32,7 +30,7 @@ function editableInit() {
                     savedText = $(this).val();
                 }
             }
-            if ($.trim($(this).val()) != '' && !$(this).hasClass("typeahead")) {  //This is for amount and date
+            if ($.trim($(this).val()) != '' && !$(this).hasClass("typeahead") && !$(this).hasClass("datepicker")) {  //This is for amount
                 saveSelected($(this).val(), searchType, fieldId);
                 savedText = $(this).val();
             }
@@ -42,7 +40,7 @@ function editableInit() {
             searchType = $(this).prop("name");
         })
         .on("blur", function(){  //When user clicks out of field
-            if ($.trim($(this).val()).length > 2) {
+            if ($.trim($(this).val()).length > 2 && searchType.indexOf("name") >= 0) { //only do this for vendor and category
                 var thisval = $.trim($(this).val());
 
                 /*This one is tough.  I want whatever is in the field to be saved to the db when the
@@ -53,6 +51,7 @@ function editableInit() {
                  * clicks off of all fields entirely or by pressing enter.)*/
                 setTimeout(function () {
                     if (!$("#" + toCamelCase(searchType) + fieldId).is(":focus")) {
+                        console.log("#" + toCamelCase(searchType) + fieldId + " is not the focus")
                         saveSelected(thisval, searchType, fieldId);
                         savedText = thisval;
 

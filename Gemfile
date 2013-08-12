@@ -6,7 +6,7 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'rake', '10.0.4'
-#gem 'mysql2'
+gem 'mysql2'
 
 #platforms :mswin do #windows
 #  gem 'mysql2'
