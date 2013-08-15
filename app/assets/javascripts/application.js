@@ -18,7 +18,8 @@
 //= require jquery-ui-1.10.2.custom.min.js
 // require modernizr-2.5.3.min.js
 // require jEditable.js
-//= require bootstrap.min
+//= require bootstrap3.min
+//= require typeahead.min
 //= require jquery.currency
 // require_tree .
 

@@ -103,17 +103,17 @@ function newTransaction() {
                     '<span class="add-on"><i class="icon-calendar"></i></span>' +
                 '</div>',
                 '<div class="btn-group" data-toggle="buttons-checkbox">' +
-                    '<button id="cleared_' + id + '" name="cleared" class="btn editable checkbox">' +
+                    '<button id="cleared_' + id + '" name="cleared" class="btn editable checkboxs">' +
                         '<i class="icon-check icon-white"></i></button>' +
-                    '<button id="recurring_' + id + '" name="recurring" class="btn editable checkbox">' +
+                    '<button id="recurring_' + id + '" name="recurring" class="btn editable checkboxs">' +
                         '<i class="icon-refresh icon-white"></i></button>' +
-                   '<button id="deposit_' + id + '" name="deposit" class="btn editable checkbox">' +
+                   '<button id="deposit_' + id + '" name="deposit" class="btn editable checkboxs">' +
                         '<i class="icon-money icon-white"></i> </button>' +
                 '</div>',
 //                '<a href="/transactions/' + id + '/edit" id="edit-btn_' + id + '" class="btn btn-mini" style="float:left">Edit</a><br/>' +
                 '<form action="/transactions/' + id + '" class="button_to" method="post" >' +
                 '<div><input name="_method" type="hidden" value="delete">' +
-                '<input id="delete-btn_' + id + '" type="submit" value="Delete" class"btn btn-mini btn-danger" style="float:right"></div></form>',
+                '<input id="delete-btn_' + id + '" type="submit" value="Delete" class"btn btn-xs btn-danger" style="float:right"></div></form>',
                 '<div id="vendorName_' + id + '"_Search"></div>',
                 '<div id="categoryName_' + id + '"_Search"></div>',
                 '<div id="amount' + id + '"_Search"></div>',

@@ -51,7 +51,7 @@ h2 {
 
 }
 
-.checkbox{
+.checkboxs{
   font-weight: normal !important;
 }
 
@@ -96,4 +96,23 @@ h2 {
   z-index: 900;
   top: 38px;
   right: 20px;
+}
+
+.typeahead{
+  margin: 7px 0 0 0;
+  max-width: 130px;
+  min-height: 30px;
+}
+
+.currency{
+  margin-top: 7px;
+  max-width: 80px;
+  height: 30px !important;
+
+}
+
+.datepicker {
+  margin-top: 7px;
+  max-width: 110px;
+  height: 30px !important;
 }

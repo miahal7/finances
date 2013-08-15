@@ -169,7 +169,7 @@ function datepickerInit() {
 }
 
 function checkBoxesInit() {
-    $(".checkbox").click(function () {
+    $(".checkboxs").click(function () {
         var checked = $(this).hasClass('active');
         checkBoxStyleHandler(this, checked);
         changeBalance(this, 0);
