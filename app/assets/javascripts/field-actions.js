@@ -30,7 +30,7 @@ function editableInit() {
                     savedText = $(this).val();
                 }
             }
-            if ($.trim($(this).val()) != '' && !$(this).hasClass("typeahead") && !$(this).hasClass("datepicker")) {  //This is for amount
+            if ($.trim($(this).val()) != '' && !$(this).hasClass("typeahead") && !$(this).hasClass("datepicker") && !$(this).hasClass("checkboxs")) {  //This is for amount
                 saveSelected($(this).val(), searchType, fieldId);
                 savedText = $(this).val();
             }
@@ -45,13 +45,13 @@ function editableInit() {
 
                 /*This one is tough.  I want whatever is in the field to be saved to the db when the
                 * field loses focus, but the field loses focus when an item is selected from the
-                * typeahead element.  This results in whatever was in the field when the uses selects
+                * typeahead element.  This results in whatever was in the field when the user selects
                 * from the typeahead being saved in the db.  The below currently fixes that problem,
                 * but now it will not save when the user clicks onto another field. (Saves when user
-                 * clicks off of all fields entirely or by pressing enter.)*/
+                * clicks off of all fields entirely or by pressing enter.)*/
                 setTimeout(function () {
                     if (!$("#" + toCamelCase(searchType) + fieldId).is(":focus")) {
-                        console.log("#" + toCamelCase(searchType) + fieldId + " is not the focus")
+                        console.log("#" + toCamelCase(searchType) + fieldId + " is not the focus");
                         saveSelected(thisval, searchType, fieldId);
                         savedText = thisval;
 
@@ -173,6 +173,7 @@ function checkBoxesInit() {
         var checked = $(this).hasClass('active');
         checkBoxStyleHandler(this, checked);
         changeBalance(this, 0);
+        console.log("Saving this rom checkboxes init");
         saveSelected(!checked, searchType, fieldId);
     });
 }
