@@ -1,8 +1,0 @@
-class Category < ActiveRecord::Base
-  attr_accessible :name
-
-  has_many :transactions, through: :transaction_categories
-  has_many :transaction_categories
-
-  scope :named_like, lambda { |name| where("lower(name) like lower(?)", "#{name}%") }
-end
