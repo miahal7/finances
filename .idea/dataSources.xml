@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" hash="2085862317">
-    <data-source source="LOCAL" name="Rails Finances: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="3ee5d553-d7e9-4c0b-9732-b49c68d7f488">
+    <data-source source="LOCAL" name="Rails Finances: development" uuid="3ee5d553-d7e9-4c0b-9732-b49c68d7f488">
+      <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1/Finances</jdbc-url>
-      <user-name>finances</user-name>
-      <user-password>dfccdfc3dfc4dfcbdfc4dfc9dfcfdfd9</user-password>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/finances</jdbc-url>
+      <user-name>rails</user-name>
+      <user-password>dfd8dfeadf8bdfc6df9f</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine40/config/jdbc-drivers/mysql-connector-license.txt</url>
@@ -15,7 +16,8 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails Finances: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="b4d4bce6-2511-4dcf-a289-fdce216d7dae">
+    <data-source source="LOCAL" name="Rails Finances: development" uuid="b4d4bce6-2511-4dcf-a289-fdce216d7dae">
+      <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/Finances</jdbc-url>
       <user-name>finances</user-name>
@@ -28,6 +30,22 @@
           <url>jar://$USER_HOME$/.RubyMine40/config/jdbc-drivers/mysql-connector-java-5.1.18-bin.jar!/</url>
         </library>
       </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="Rails Finances: test" uuid="327ee5b9-32c0-423e-a8b2-abc4822fe08d">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/finances</jdbc-url>
+      <user-name>rails</user-name>
+      <user-password>dfd8dfeadf8bdfc6df9f</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails Finances: production" uuid="fa1c643d-1b54-4d74-ab51-2aac85a47c32">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/d6sruu2orlota9</jdbc-url>
+      <user-name>umqrxhttudlzll</user-name>
+      <user-password>dfd2dff2dfdfdfc8dfdddfc7dfc8dfcddff0dfc6dfcedfeddfd0dfd0df87df9fdf9cdfdedfe4dfccdffbdfd0dfcedfd8dfccdfe2</user-password>
+      <libraries />
     </data-source>
   </component>
 </project>
