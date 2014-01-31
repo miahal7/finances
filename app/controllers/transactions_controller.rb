@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
   def index
     @ledger_date = view_context.ledger_date
     Transaction.duplicate_recurring(@ledger_date)
-    @transactions = Transaction.where(ledger_month: @ledger_date)
+    @transactions = Transaction.where(ledger_month: @ledger_date).includes(:vendor, :category)
     #@transactions = Transaction.find_all_by_ledger_month(@ledger_date)
 
     if request.xhr?
