@@ -1,6 +1,4 @@
 class Vendor < ActiveRecord::Base
-  attr_accessible :category_id, :name
-
   has_many :transactions, through: :transaction_vendors
   has_many :transaction_vendors
 

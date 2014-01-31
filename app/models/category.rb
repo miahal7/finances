@@ -1,6 +1,4 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name
-
   has_many :transactions, through: :transaction_categories
   has_many :transaction_categories
 

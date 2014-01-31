@@ -1,5 +1,5 @@
 class Session < ActiveRecord::Base
-  attr_accessible :month
+  #attr_accessible :month
 
   def self.save_month(date)
     session = self.first.nil? ? self.new : self.first
