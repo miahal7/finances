@@ -82,7 +82,7 @@ class VendorsController < ApplicationController
   end
 
   def named_like
-    vendors = Vendor.typeahead
+    vendors = Vendor.named_like(params[:name])
 
     respond_to do |format|
       format.json { render json: vendors }

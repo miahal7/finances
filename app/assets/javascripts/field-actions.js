@@ -39,16 +39,16 @@ function editableInit() {
             fieldId = getTransactionId(this);
             searchType = $(this).prop("name");
         })
-        .on("blur", function(){  //When user clicks out of field
+        .on("blur",function () {  //When user clicks out of field
             if ($.trim($(this).val()).length > 2 && searchType.indexOf("name") >= 0) { //only do this for vendor and category
                 var thisval = $.trim($(this).val());
 
                 /*This one is tough.  I want whatever is in the field to be saved to the db when the
-                * field loses focus, but the field loses focus when an item is selected from the
-                * typeahead element.  This results in whatever was in the field when the user selects
-                * from the typeahead being saved in the db.  The below currently fixes that problem,
-                * but now it will not save when the user clicks onto another field. (Saves when user
-                * clicks off of all fields entirely or by pressing enter.)*/
+                 * field loses focus, but the field loses focus when an item is selected from the
+                 * typeahead element.  This results in whatever was in the field when the user selects
+                 * from the typeahead being saved in the db.  The below currently fixes that problem,
+                 * but now it will not save when the user clicks onto another field. (Saves when user
+                 * clicks off of all fields entirely or by pressing enter.)*/
                 setTimeout(function () {
                     if (!$("#" + toCamelCase(searchType) + fieldId).is(":focus")) {
                         console.log("#" + toCamelCase(searchType) + fieldId + " is not the focus");
@@ -136,26 +136,67 @@ function currencyInit() {
 function typeaheadInit() {
     //TODO: typeahead searches EVERY TIME a key is pressed.
     // searchType, fieldId, and savedText are all set in the .editable click event
-    $('.typeahead')
-        .typeahead({
-            source: function (query, process) {
-                $.ajax({
-                    url: searchType + "/like",
-                    data: query,
-                    success: function (data) {
-                        process(data);
-                    }
-                });
-            },
-            minLength: 1,
-            updater: function (item) {
-//                console.log("In updater");
-//                console.log("The value of the field is " + savedText);
-                saveSelected(item, searchType, fieldId);
-                savedText = item;
-                return item;
-            }
-        });
+    $('.typeahead').typeahead({
+        name: 'customers',
+        limit: 5,
+        remote: {
+            url: "vendor_name/like?name=%QUERY"//,//'/z_forms/customer/name_like?name=%QUERY',
+//            filter: function (response) {
+//                console.log("filter -> response: " + JSON.stringify(response));
+
+//                var template_string = "<p><strong>{{company}}</strong><br>{{address1}}<br>{{city}}, {{state}} {{postalcode}}<br>{{country}}</p>";
+//                var dataset = [];
+//
+//                    for (i = 0; i < response.length; i++) {
+//                        var data = {};
+//                        if(response[i].value !== "No Results"){
+//                            data = {company: response[i].value, address1: response[i].address.address1, city: response[i].address.city, state: response[i].address.state, postalcode: response[i].address.postalcode, country: response[i].address.country};
+//                        }
+//                        dataset.push({
+//                            value: response[i].value,
+//                            tokens: response[i].tokens,
+//                            keyops_id: response[i].keyops_id,
+//                            data: data,
+//                            parse: function() {
+//                                return function(text) {
+//                                    // console.log("this.value: " + this.value);
+//                                    if(this.value !== "No Results"){
+//                                        var template = Hogan.compile(template_string);
+//                                        return template.render(this.data);
+//                                    } else {
+//                                        return "No Results";
+//                                    }
+//                                }
+//                            }
+//                        });
+//                    }
+                // console.log("dataset: " + JSON.stringify(dataset));
+//                    return dataset;
+//            }
+        },
+
+        template: '{{#parse}}{{/parse}}',
+        engine: Hogan
+    });
+
+
+//        .typeahead({
+//            source: function (query, process) {
+//                $.ajax({
+//                    url: searchType + "/like",
+//                    data: query,
+//                    success: function (data) {
+//                        process(data);
+//                    }
+//                });
+//            },
+//            minLength: 1,
+//            updater: function (item) {
+//                saveSelected(item, searchType, fieldId);
+//                savedText = item;
+//                return item;
+//            }
+//        });
 }
 
 function datepickerInit() {

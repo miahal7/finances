@@ -1,3 +1,5 @@
+<script src="http://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.js"></script>
+
 <p id="notice"><%= notice %></p>
 <% set_balances %>
 
@@ -12,10 +14,10 @@
     <div id="bank-balance" data-balance="<%= @bank_balance %>"><%= number_to_currency(@bank_balance) %> </div>
   </div>
 </div>
-<div id='content-inner' class='content-inner'>
+<!--<div id='content-inner' class='content-inner'>-->
     <%= render partial: 'month' %>
-</div>
-<div id='content-inner-2' class='content-inner-2'></div>
+<!--</div>-->
+<!--<div id='content-inner-2' class='content-inner-2'></div>-->
 
 
 
