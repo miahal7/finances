@@ -8,11 +8,11 @@ class TransactionsController < ApplicationController
     @transactions = Transaction.where(ledger_month: @ledger_date).includes(:vendor, :category)
     #@transactions = Transaction.find_all_by_ledger_month(@ledger_date)
 
-    if request.xhr?
-      render partial: 'month', layout: false
-      return
-    end
-
+    #if request.xhr?
+    #  render partial: 'month', layout: false
+    #  return
+    #end
+    logger.debug "+++++++++++IN TRANSACTIONS INDEX -> #{@transactions.inspect}"
     respond_to do |format|
       format.html # index.html.erb
       #format.json { render layout: false }

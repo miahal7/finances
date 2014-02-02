@@ -136,11 +136,11 @@ function currencyInit() {
 function typeaheadInit() {
     //TODO: typeahead searches EVERY TIME a key is pressed.
     // searchType, fieldId, and savedText are all set in the .editable click event
-    $('.typeahead').typeahead({
-        name: 'customers',
-        limit: 5,
-        remote: {
-            url: "vendor_name/like?name=%QUERY"//,//'/z_forms/customer/name_like?name=%QUERY',
+//    $('.typeahead').typeahead({
+//        name: 'customers',
+//        limit: 5,
+//        remote: {
+//            url: "vendor_name/like?name=%QUERY"//,//'/z_forms/customer/name_like?name=%QUERY',
 //            filter: function (response) {
 //                console.log("filter -> response: " + JSON.stringify(response));
 
@@ -173,11 +173,11 @@ function typeaheadInit() {
                 // console.log("dataset: " + JSON.stringify(dataset));
 //                    return dataset;
 //            }
-        },
-
-        template: '{{#parse}}{{/parse}}',
-        engine: Hogan
-    });
+//        },
+//
+//        template: '{{#parse}}{{/parse}}',
+//        engine: Hogan
+//    });
 
 
 //        .typeahead({

@@ -14,4 +14,5 @@ Finances::Application.routes.draw do
   get 'index', to: 'transactions#index'
 
   root :to => 'transactions#index'
+  #root :to => 'application#index'
 end
