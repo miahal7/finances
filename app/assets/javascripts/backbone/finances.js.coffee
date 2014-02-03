@@ -10,7 +10,8 @@ window.Finances =
   Routers: {}
   Views: {}
 
-  initialize: (options) ->
+  init: (options) ->
+    console.log ("initializing Finances with options " + options)
     Finances.options = options
     new Finances.Routers.TransactionsRouter(options)
 
