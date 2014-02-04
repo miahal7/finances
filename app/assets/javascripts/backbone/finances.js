@@ -4,6 +4,14 @@
 // require_tree ./views
 // require_tree ./routers
 
+// include the CSRF token will every ajax call
+// $.ajaxSetup({
+//     beforeSend: function(xhr)
+//     {
+//       xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
+//     }
+// });
+
 (function () {
     window.Finances = {
         Models: {},
@@ -20,7 +28,7 @@
 
             if (!Backbone.history.started) {
                 Backbone.history.start();
-                Backbone.history.started = true;
+                // Backbone.history.started = true;
             }
 
             console.log("Finance app initialized ");
@@ -45,7 +53,6 @@
 
         index: function () {
             new Finances.Views.MyView({model: new Finances.Models.Transaction({name: "Barack Obama", phone: "432-638-9999"})});
-
             console.log("index Route Loaded!");
         }
 
