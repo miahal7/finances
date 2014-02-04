@@ -19,19 +19,11 @@ test:
   password: r@!l5
   port: 5432
 
-production:
-  adapter: postgresql
-  encoding: utf8
-  database: ****
-  username: ****
-  password: ****
-  port: ****
+# production:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: ****
+#   username: ****
+#   password: ****
+#   port: ****
 
-#development:
-#  adapter: postgresql
-#  encoding: utf8
-#  host: ****
-#  database: ****
-#  username: ****
-#  password: ****
-#  port: ****

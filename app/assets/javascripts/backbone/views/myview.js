@@ -14,18 +14,24 @@ Finances.Views.MyView = Backbone.View.extend({
 	},
 
 	render: function(){
+		var self = this;
+
 		// render the template with data to the target HTML DOM element
-		
-		// put loading icon or message here...
-		$(this.el).html("Loading meh shat!");
+
+		$(self.el).html("Loading meh shat!");
 
 		this.model.fetch({
 			success: function(model, response){
 				console.log("response: " + JSON.stringify(response));
-				$(this.el).html(this.template(this.model.toJSON())); // use call toJSON only on bb models
+				if(response.length !== 0)
+					$(self.el).html(self.template(response));
+				else
+					$(self.el).html("Done wit' meh shat!");
+				// $(self.el).html(self.template(self.model.toJSON())); // use call toJSON only on bb models
 			},
 			error: function(message){
 				console.log("message: " + message);
+				$(self.el).html("WTF?! ERROR: " + message);
 			}
 		});
 		console.log("My View Rendered!");
