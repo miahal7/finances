@@ -42,9 +42,9 @@
     <data-source source="LOCAL" name="Rails Finances: production" uuid="fa1c643d-1b54-4d74-ab51-2aac85a47c32">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/d6sruu2orlota9</jdbc-url>
-      <user-name>umqrxhttudlzll</user-name>
-      <user-password>dfd2dff2dfdfdfc8dfdddfc7dfc8dfcddff0dfc6dfcedfeddfd0dfd0df87df9fdf9cdfdedfe4dfccdffbdfd0dfcedfd8dfccdfe2</user-password>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:****/****</jdbc-url>
+      <user-name>****</user-name>
+      <user-password>df80df80df80df80</user-password>
       <libraries />
     </data-source>
   </component>
