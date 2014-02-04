@@ -22,16 +22,16 @@ test:
 production:
   adapter: postgresql
   encoding: utf8
-  database: d6sruu2orlota9
-  username: umqrxhttudlzll
-  password: xXubwmbgZldGzz-56tNfQzdrfH
-  port: 5432
+  database: ****
+  username: ****
+  password: ****
+  port: ****
 
 #development:
 #  adapter: postgresql
 #  encoding: utf8
-#  host: ec2-54-235-242-31.compute-1.amazonaws.com
-#  database: d6sruu2orlota9
-#  username: umqrxhttudlzll
-#  password: xXubwmbgZldGzz-56tNfQzdrfH
-#  port: 5432
+#  host: ****
+#  database: ****
+#  username: ****
+#  password: ****
+#  port: ****
