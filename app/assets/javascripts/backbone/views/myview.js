@@ -11,11 +11,10 @@ Finances.Views.MyView = Backbone.View.extend({
 
 //        console.log("-------" + this)
 
-		this.template = JST["templates/myview"]; // set the template to be used
+		this.template = JST["backbone/templates/myview"]; // set the template to be used
 		this.model.fetch(); // comment this out if you are not using a bb model
 
-//        console.log("My View Initialized with " + this.template);
-
+        console.log("My View Initialized with " + this.template);
 
         this.render(); // go ahead and render our view
 	},
