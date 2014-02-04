@@ -5,7 +5,7 @@ gem 'rails', '4.0.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'rails-backbone'
+#gem 'rails-backbone'
 
 gem 'rake'#, '10.0.4'
 #gem 'mysql2'

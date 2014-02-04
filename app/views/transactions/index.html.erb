@@ -16,13 +16,24 @@
     <!--<%#= render partial: 'month' %>-->
 
 <% logger.info "===============IN VIEW #{@transactions.inspect}" %>
-<script type="text/javascript">
-    $(function(){
-        Finances.init({
-            transactions: <%= @transactions.to_json.html_safe -%>
-        });
+
+
+<div id="app-content">This is where you app content will be rendered.</div>
+
+<%#= javascript_include_tag "application" %>
+
+<script>
+    $(document).ready(function() {
+        // App Initialization
+
+        var options = {};
+        options.username = "jlucio"; // <%#= session[:username] %>
+
+        Finances.init(options);
     });
 </script>
+
+
 
 <!--<div id="action-btn-header" class="btn-group">-->
   <!--<button id='prev-month-btn'  class="right btn">-->

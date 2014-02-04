@@ -14,16 +14,24 @@
 // require jquery-ui-1.10.2.custom.min.js
 //= require jquery
 //= require jquery_ujs
-//= require underscore
-//= require backbone
-//= require backbone_rails_sync
-//= require backbone_datalink
+// require underscore
+// require backbone
+// require backbone_rails_sync
+// require backbone_datalink
+//= require json2
+//= require lodash.underscore
+//= require backbone-min
 //= require backbone/finances
 // require jquery.ui.datepicker
 // require jquery.dataTables.min
 // require bootstrap3.min
 // require typeahead.min
 // require jquery.currency
+
+//= require_tree ./backbone/models
+// require_tree ./backbone/collections
+//= require_tree ./backbone/templates
+//= require_tree ./backbone/views
 
 //$(document).ready(function () {
 //    $(".nav-tab").click(function () {
