@@ -1,5 +1,8 @@
 class TransactionsController < ApplicationController
+<<<<<<< HEAD
   http_basic_authenticate_with name: '', password: ''
+=======
+>>>>>>> 26c4d11e3e3f2fe60450822541c628abc3cbdfc4
   # http_basic_authenticate_with name: '', password: ''
   # GET /transactions
   # GET /transactions.json
