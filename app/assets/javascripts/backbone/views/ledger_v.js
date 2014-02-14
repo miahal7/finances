@@ -4,29 +4,44 @@ Finances.Views.Ledger = Backbone.View.extend({
 	el: "#ledger",
 	
 	initialize: function(transactions){
+		var self = this;
+		
 		_.bindAll(this); // underscore event wiring
-		this.template = JST["backbone/templates/ledger"]; // set the template to be used
-		this.render();
+		this.template = JST["backbone/templates/ledger_t"]; // set the template to be used
+		this.collection = new Finances.Collections.Ledger();
+		this.collection.fetch().done(function(){
+			self.render();			
+		});
 		// Finances.LedgerCollection = new Finances.Collections.Ledger();
 	},
 	
 	render: function(){
-		$(this.el).html("CHANGED!");
-		// var ledger = Finances.Collections.Ledger.fetch();
-		console.log("Rendering Ledger");
+		console.log("collection -> " + JSON.stringify(this.collection));
+		this.$el.html(this.template({
+		    collection: this.collection.toJSON()
+		}));
 		
-		//Finances.LedgerCollection.each(function(item){
-// 			this.renderTransaction(item);
-// 		}, this);
+		
+		// var self = this;
+// 			$(this.el).html(this.template);
+// 	
+// 				this.collection.each(function(item){
+// 					
+// 				self.renderTransaction(item);
+// 			});
+// 
+// 		this.$el.append("</table>");
 
 		return this;
 	},
 	
 	renderTransaction: function(item){
+		// console.log("Rendering Transaction (renderTransaction) -> " + item);
+	
 		var transactionView = new Finances.Views.Transaction({
 			model: item
 		});
-		
+		this.$el.append(transactionView.render());
 		
 		// <tr>
 	// 		<td style="margin: 3px; border: 1px solid grey;"><%= id %></td>
@@ -38,8 +53,8 @@ Finances.Views.Ledger = Backbone.View.extend({
 	// 		<td style="margin: 3px; border: 1px solid grey;"><%= ledger_month %></td>
 	// 	</tr>
 		
+	// console.log("transactionView.model -> " + JSON.stringify(transactionView.model));
 		
-		
-		this.$el.append(transactionView.render().el);
+		// this.$el.append(transactionView.render(transactionView.model).el);
 	}
 });

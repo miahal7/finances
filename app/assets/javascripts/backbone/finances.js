@@ -21,7 +21,7 @@
         Views: {},
 
         init: function(options) {
-            console.log("Initialization started");
+            // console.log("Initialization started");
 
             Finances.options = options;
 //            new Finances.Routers.TransactionsRouter(options);
@@ -32,7 +32,7 @@
                 // Backbone.history.started = true;
             }
 
-            console.log("Finance app initialized ");
+            // console.log("Finance app initialized ");
 			
         }
 
@@ -55,12 +55,12 @@ Finances.Router = Backbone.Router.extend({
     },
 
     initialize: function () {
-        console.log("App Initialized!");
+        // console.log("App Initialized!");
     },
 
     index: function () {
         new Finances.Views.Ledger();
-        console.log("index Route Loaded!");
+        // console.log("index Route Loaded!");
     }
 
     // loadMyRoute: function () {

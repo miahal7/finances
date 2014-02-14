@@ -1,23 +1,16 @@
 class TransactionsController < ApplicationController
   http_basic_authenticate_with name: '', password: ''
-  # http_basic_authenticate_with name: '', password: ''
+
   # GET /transactions
   # GET /transactions.json
   def index
     @ledger_date = view_context.ledger_date
     Transaction.duplicate_recurring(@ledger_date)
     @transactions = Transaction.where(ledger_month: @ledger_date).includes(:vendor, :category)
-    #@transactions = Transaction.find_all_by_ledger_month(@ledger_date)
 
-    #if request.xhr?
-    #  render partial: 'month', layout: false
-    #  return
-    #end
-    logger.debug "+++++++++++IN TRANSACTIONS INDEX -> #{@transactions.inspect}"
     respond_to do |format|
       format.html # index.html.erb
-      #format.json { render layout: false }
-      format.json { render json: @transactions }
+      format.json { render json: @transactions.to_json(include: [:vendor, :category]) }
     end
   end
 

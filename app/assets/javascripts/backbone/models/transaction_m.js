@@ -17,12 +17,12 @@ Finances.Models.Transaction = Backbone.Model.extend({
     urlRoot: "/transactions/",
 
     initialize: function () {
-        console.log("My Transactions Model Initialized!");
+        // console.log("My Transactions Model Initialized!");
     },
 
     parse: function (response) {
 //        $("#modal").html(new App.Views.MessagePopup({model: response}).render().el);
-
+		
         // console.log("Finances.Models.MyModel.parse -> JSON: " + JSON.stringify(response));
         return response;
     }

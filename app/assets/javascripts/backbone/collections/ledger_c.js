@@ -1,4 +1,4 @@
-// js/collections/approvals.js
+// js/collections/ledger.js
 
 Finances.Collections = Finances.Collections || {}; // initialize our collections namespace if it has not been done already
 
@@ -11,11 +11,11 @@ Finances.Collections.Ledger = Backbone.Collection.extend({
     // remote: true,
 
     initialize: function () {
-        // console.log("Approvals Collection Initialized!");
+        // console.log("Ledger Collection Initialized!");
     },
 
     parse: function (response) {
-        console.log("Finances.Collecions.Transactions.parse -> JSON: " + JSON.stringify(response));
+        // console.log("Finances.Collecions.Transactions.parse -> JSON: " + JSON.stringify(response));
         return response;
     }
 });
