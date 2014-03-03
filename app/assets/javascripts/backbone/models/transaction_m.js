@@ -5,26 +5,48 @@ Finances.Models = Finances.Models || {}; // initialize our models namespace if i
 // My Model
 
 Finances.Models.Transaction = Backbone.Model.extend({
-    defaults: {
-        date: null,
-        amount: null,
-        cleared: null,
-        recurring: null,
-        ledger_month: null,
-        deposit: null
-    },
+    // urlRoot: "/transactions"
 	
-    urlRoot: "/transactions/",
-
-    initialize: function () {
-        // console.log("My Transactions Model Initialized!");
-    },
-
-    parse: function (response) {
-//        $("#modal").html(new App.Views.MessagePopup({model: response}).render().el);
-		
-        // console.log("Finances.Models.MyModel.parse -> JSON: " + JSON.stringify(response));
-        return response;
+	
+	url: function() {
+      var base =  '/transactions/';
+      if (this.isNew()){
+		 console.log("model is new, saving to db as new transaction");
+      	 return base;
+      }
+      else{
+ 		// console.log("model already exists, updating transaction");		  
+		 return base + this.id;
+	  }
     }
+	// defaults: {
+	// 	date: '',
+	// 	amount: '',
+	// 	cleared: false,
+	// 	deposit: false,
+	// 	recurring: false,
+	// 	ledger_month: ''		
+	// }
+	
+	
+	
+
+   // initialize: function () {
+// 		_.bindAll(this); // underscore event wiring
+// 		
+//         console.log("My Transactions Model Initialized!");
+		// return this.fetch();
+    // }
+// 
+		//     parse: function (response) {
+		// var ary = Array();
+		// 
+		// $.each(response, function(index, value){
+		//             // console.log("response.attributes " + JSON.stringify(value));
+		// 	ary.push(value);
+		// });
+		// 
+		//         return ary;
+		//     }
 
 });

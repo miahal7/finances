@@ -1,3 +1,4 @@
+
 Finances.Router = Backbone.Router.extend({
 
     routes: {
@@ -9,12 +10,14 @@ Finances.Router = Backbone.Router.extend({
     },
 
     initialize: function () {
-        console.log("App Initialized!");
+        // console.log("App Initialized!");
     },
 
     index: function () {
-        new Finances.Views.MyView({model: new Finances.Models.Transaction({})});
-        console.log("index Route Loaded!");
+        new Finances.Views.Ledger();
+		//new Finances.Views.Transaction({model: new Finances.Models.Transaction()});
+		
+        // console.log("index Route Loaded!");
     }
 
     // loadMyRoute: function () {

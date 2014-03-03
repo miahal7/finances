@@ -1,4 +1,6 @@
 class TransactionsController < ApplicationController
+  before_action :set_transaction, only: [:show, :edit, :destroy] #:update
+  
   http_basic_authenticate_with name: '', password: ''
 
   # GET /transactions
@@ -8,6 +10,9 @@ class TransactionsController < ApplicationController
     Transaction.duplicate_recurring(@ledger_date)
     @transactions = Transaction.where(ledger_month: @ledger_date).includes(:vendor, :category)
 
+    
+    logger.debug("transactions index -> @transactions: #{@transactions.to_json(include: [:vendor, :category])}")
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @transactions.to_json(include: [:vendor, :category]) }
@@ -17,7 +22,6 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
-    @transaction = Transaction.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,7 +43,6 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
-    @transaction = Transaction.find(params[:id])
   end
 
   # POST /transactions
@@ -63,14 +66,15 @@ class TransactionsController < ApplicationController
   def update
     @transaction = Transaction.find(params[:id])
 
-    logger.debug("==========PARAMS ARE #{params.inspect}")
+     logger.debug("==========PARAMS ARE #{params.inspect}")
 
-    updated_value = @transaction.update_attrs(params)
-    if updated_value != 'unable to update'
-      logger.debug("############################RETURNING #{updated_value}")
-      render json: updated_value, layout: false
+    # updated_value = @transaction.update_attrs(params)
+    # if updated_value != 'unable to update'
+    if @transaction.update_all(transaction_params, params)
+      # logger.debug("############################RETURNING #{updated_value}")
+      render json: @transaction, layout: false
     else
-      logger.debug('############################RETURNING UNABLE TO UPDATE')
+      # logger.debug('############################RETURNING UNABLE TO UPDATE')
       render json: 'unable to update', status: :unprocessable_entity, layout: false
     end
   end
@@ -78,7 +82,7 @@ class TransactionsController < ApplicationController
   # DELETE /transactions/1
   # DELETE /transactions/1.json
   def destroy
-    @transaction = Transaction.find(params[:id], include: :vendor)
+    # @transaction = Transaction.find(params[:id], include: :vendor)
     vendor_name = @transaction.vendor.name.blank? ? 'Transaction' : "#{@transaction.vendor.name} transaction"
 
     @transaction.destroy_and_remove_recurring
@@ -87,4 +91,20 @@ class TransactionsController < ApplicationController
       # render json: @transaction, layout: false
     end
   end
+  
+  private
+# vendor"=>{"id"=>190, "name"=>"Corner Bakery 0", "created_at"=>"2014-01-31T19:07:54.936Z", "updated_at"=>"2014-01-31T19:07:54.936Z"}, "category"=>{"id"=>20, "name"=>"Restaurants/dining", "created_at"=>"2014-01-31T19:07:48.002Z", "updated_at"=>"2014-01-31T19:07:48.002Z"}}
+
+
+# Use callbacks to share common setup or constraints between actions.
+    def set_transaction
+      @transacion = Transaction.find(params[:id])
+    end
+    
+    def transaction_params
+      params.require(:transaction).permit(:id, :date, :amount, :cleared, :recurring, :deposit,
+                                          :ledger_month, :created_at, :updated_at)
+                                          # vendor: [:id, :name, :created_at, :updated_at],
+                                          # category: [:id, :name, :created_at, :updated_at])
+    end
 end

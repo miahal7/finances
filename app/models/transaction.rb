@@ -1,10 +1,15 @@
 require 'csv'
 
 class Transaction < ActiveRecord::Base
+  self.include_root_in_json = false
+  
 	has_one :transaction_vendor, dependent: :destroy
 	has_one :transaction_category, dependent: :destroy
 	has_one :vendor, through: :transaction_vendor
 	has_one :category, through: :transaction_category
+  
+  accepts_nested_attributes_for :vendor
+  accepts_nested_attributes_for :category
 
 	def self.ledger_total
 		ledger_add = Transaction.select('amount, ledger_month').where(deposit: true)
@@ -169,24 +174,23 @@ class Transaction < ActiveRecord::Base
 		end
 	end
 
-	def update_all(params)
+	def update_all(transaction_params, params)
 		begin
-			if self.update_attributes(params[:transaction])
-				vendor = Vendor.find_or_initialize_by_name(params[:vendor_name])
-				vendor.save
-
-				transaction_vendor = TransactionVendor.new
-				transaction_vendor.vendor_id = vendor.id
-				transaction_vendor.transaction_id = self.id
-				transaction_vendor.save
-
-				category = Category.find_or_initialize_by_name(params[:category_name])
-				category.save
-
-				transaction_category = TransactionCategory.new
-				transaction_category.category_id = category.id
-				transaction_category.transaction_id = self.id
-				transaction_category.save
+			if self.update_attributes(transaction_params)
+        
+        # Checks if the vendor or category has changed. If it has, updates the intermediate table to point to the 
+        # new vendor or category 
+        %w(vendor category).each do |attr| 
+          attribute = attr.capitalize.constantize.find_or_initialize_by(name: params[attr.to_sym][:name])
+          attribute.save          
+          # Get the associated transaction_vendor or transaction_category. If the vendor/category has changed then 
+          # point the transaction_vendor/category to the correct vendor/category. Otherwise, leave it alone.
+          transaction_attr = "transaction_#{attr}".camelize.constantize.where(transaction_id: self.id)[0]
+          if transaction_attr.send("#{attr}_id") != attribute.id
+   				  transaction_attr.send("#{attr}_id=", attribute.id)
+            transaction_attr.save
+          end
+        end 
 			else
 				return false
 			end
