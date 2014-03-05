@@ -17,7 +17,7 @@
 //= require bootstrap3.min
 //= require bootstrap-datepicker.min
 //= require jquery.currency.min
-//= require typeahead.min
+//= require_tree ./test
 
 // +++ Load Backbone application +++ //
 //= require backbone/finances
