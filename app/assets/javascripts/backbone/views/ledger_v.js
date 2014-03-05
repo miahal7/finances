@@ -4,8 +4,9 @@ Finances.Views.Ledger = Backbone.View.extend({
 	el: "#ledger",
 	
 	events: {
-		//'click .vendor': "initVendorTypeAhead",
-		'change .model': "saveTransaction"
+		'click #new-transaction': "addTransaction",
+		'change .editable': "saveTransaction",
+		'click .delete': "deleteTransaction"
 	},
 	
 	initialize: function(transactions){
@@ -34,8 +35,46 @@ Finances.Views.Ledger = Backbone.View.extend({
 		return this;
 	},
 	
+	deleteTransaction: function(e){
+		
+		var tr = $(e.currentTarget).closest("tr");
+		var id = $(tr).attr("data-model-id");
+		
+		var transaction = new Finances.Models.Transaction(this.collection.get(id).toJSON());
+		this.collection.remove(transaction);
+		console.log("Removing " + transaction);
+		this.render();
+		transaction.destroy();
+	},
+	
+	addTransaction: function(e){
+		var self = this;
+		console.log("IN ADDING TRANSACTION");
+		var transaction = new Finances.Models.Transaction({vendor: {name: ""},
+		 					 							   category: {name: ""},
+													   	   amount: 0,
+													       date: "",
+													       cleared: false,
+													       recurring: false,
+													       deposit: false,
+													   	   ledger_month: "2013-05-01"});
+														   
+		console.log("Adding transaction -> " + JSON.stringify(transaction));
+		transaction.save({},
+							{success: function(response){
+								self.collection.add(response);
+								self.render();
+								
+								console.log("SAVE SUCCESS" + JSON.stringify(response));
+							}
+						});
+		console.log("Saved Transaction to DB, id is -> " + JSON.stringify(transaction));
+		// this.collection.add(transaction);
+		
+	},
+	
 	saveTransaction: function(e){
-		var tr = $(e.currentTarget);
+		var tr = $(e.currentTarget).closest("tr");
 		var id = $(tr).attr("data-model-id");
 		var vendorName = tr.find(".vendor").find("input").val();
 		var categoryName = tr.find(".category").find("input").val();

@@ -66,9 +66,9 @@ class Transaction < ActiveRecord::Base
 		return add - sub
 	end
 
-	# When a transaction is destroyed, any recurring transactions from the previous month will duplicate if it doesn't
-	# exist in the current month.  This method prevents this by first setting recurring to false on the previous month's
-	# matching recurring transaction and then deleting the selected record
+	# When a transaction is destroyed, any recurring transactions from the previous month will duplicate if it 
+  # doesn't exist in the current month.  This method prevents this by first setting recurring to false on the 
+  # previous month's matching recurring transaction and then deleting the selected record
 	def destroy_and_remove_recurring
 		date = self.date.blank? ? '01-01-2000' : self.date - 1.month
 		vendor_name = self.vendor.name.blank? ? '' : self.vendor.name
@@ -146,11 +146,12 @@ class Transaction < ActiveRecord::Base
 		return nil
 	end
 
+  #using in BB
 	#save_all saves the transaction information along with the vendor and transaction_vendor information
-	def save_all(params)
+	def save_all(transaction_params, params)
 		begin
-			if self.save
-				vendor = Vendor.find_or_initialize_by_name(params[:vendor_name])
+			if self.save(transaction_params)
+				vendor = Vendor.find_or_initialize_by_name(params[:vendor][:name])
 				vendor.save
 
 				transaction_vendor = TransactionVendor.new
@@ -158,13 +159,14 @@ class Transaction < ActiveRecord::Base
 				transaction_vendor.transaction_id = self.id
 				transaction_vendor.save
 
-				category = Category.find_or_initialize_by_name(params[:category_name])
+				category = Category.find_or_initialize_by_name(params[:category][:name])
 				category.save
 
 				transaction_category = TransactionCategory.new
 				transaction_category.category_id = category.id
 				transaction_category.transaction_id = self.id
 				transaction_category.save
+        self
 			else
 				return false
 			end
@@ -174,6 +176,8 @@ class Transaction < ActiveRecord::Base
 		end
 	end
 
+
+  #using in BB
 	def update_all(transaction_params, params)
 		begin
 			if self.update_attributes(transaction_params)

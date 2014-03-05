@@ -1,4 +1,5 @@
 <!--find me in templates/transacion.jst.ejs<br>-->
+<button id="new-transaction">New</button>
 
 <table>
 	<thead>
@@ -10,31 +11,35 @@
 			<td style="margin: 3px; border: 1px solid grey;">Cleared</td>
 			<td style="margin: 3px; border: 1px solid grey;">Recurring</td>
 			<td style="margin: 3px; border: 1px solid grey;">Deposit</td>
+			<td style="margin: 3px; border: 1px solid grey;"></td>
 		</tr>
 	</thead>
 	<tbody id="ledger-tbody">
 		<% _.each(collection, function(model) { %>
-			<tr class="model" data-model-id="<%= model.id %>">
-				<td class="vendor" style="margin: 3px; border: 1px solid grey;">
+			<tr class="" data-model-id="<%= model.id %>">
+				<td class="editable vendor" style="margin: 3px; border: 1px solid grey;">
 					<input type='text' value='<%= model.vendor.name %>'/>
 				</td>
-				<td class="category" style="margin: 3px; border: 1px solid grey;">
+				<td class="editable category" style="margin: 3px; border: 1px solid grey;">
 					<input type='text' value='<%= model.category.name %>'/>
 				</td>
-				<td class="amount" style="margin: 3px; border: 1px solid grey;">
+				<td class="editable amount" style="margin: 3px; border: 1px solid grey;">
 					<input type='text' value='<%= model.amount %>'/>
 				</td>
-				<td class="trans-date" style="margin: 3px; border: 1px solid grey;">
+				<td class="editable trans-date" style="margin: 3px; border: 1px solid grey;">
 					<input type='text' value='<%= model.date %>'/>
 				</td>				
-				<td class="cleared" style="margin: 3px; border: 1px solid grey;">
+				<td class="editable cleared" style="margin: 3px; border: 1px solid grey;">
 					<input type='checkbox' <%= (model.cleared)? 'checked=checked' : '' %>/>
 				</td>
-				<td class="recurring" style="margin: 3px; border: 1px solid grey;">
+				<td class="editable recurring" style="margin: 3px; border: 1px solid grey;">
 					<input type='checkbox' <%= (model.recurring)? 'checked=checked' : '' %>/>				
 				</td>
-				<td class="deposit" style="margin: 3px; border: 1px solid grey;">
+				<td class="editable deposit" style="margin: 3px; border: 1px solid grey;">
 					<input type='checkbox' <%= (model.deposit)? 'checked=checked' : '' %>/>
+				</td>
+				<td class="" style="margin: 3px; border: 1px solid grey;">
+					<button class='delete'>Delete</button>
 				</td>
 			</tr>		 
 		<% }); %>

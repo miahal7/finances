@@ -48,14 +48,15 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = Transaction.new(params[:transaction])
+    @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
-      if @transaction.save_all(params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+      if @transaction.save_all(transaction_params, params)
+        logger.debug("transaction created -> #{@transaction.inspect}")
+        # format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
         format.json { render json: @transaction, status: :created, location: @transaction }
       else
-        format.html { render action: 'new' }
+        # format.html { render action: 'new' }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
@@ -81,30 +82,23 @@ class TransactionsController < ApplicationController
 
   # DELETE /transactions/1
   # DELETE /transactions/1.json
-  def destroy
-    # @transaction = Transaction.find(params[:id], include: :vendor)
-    vendor_name = @transaction.vendor.name.blank? ? 'Transaction' : "#{@transaction.vendor.name} transaction"
-
-    @transaction.destroy_and_remove_recurring
-    respond_to do |format|
-      format.html { redirect_to transactions_url, notice: "#{vendor_name} was successfully deleted." }
-      # render json: @transaction, layout: false
+  def destroy    
+    if @transaction.recurring
+      @transaction.destroy_and_remove_recurring
+    else
+      @transaction.destroy
     end
+    
+    render json: "success", layout: false, status: :ok    
   end
   
   private
-# vendor"=>{"id"=>190, "name"=>"Corner Bakery 0", "created_at"=>"2014-01-31T19:07:54.936Z", "updated_at"=>"2014-01-31T19:07:54.936Z"}, "category"=>{"id"=>20, "name"=>"Restaurants/dining", "created_at"=>"2014-01-31T19:07:48.002Z", "updated_at"=>"2014-01-31T19:07:48.002Z"}}
-
-
-# Use callbacks to share common setup or constraints between actions.
     def set_transaction
-      @transacion = Transaction.find(params[:id])
+      @transaction = Transaction.find(params[:id])
     end
     
     def transaction_params
       params.require(:transaction).permit(:id, :date, :amount, :cleared, :recurring, :deposit,
                                           :ledger_month, :created_at, :updated_at)
-                                          # vendor: [:id, :name, :created_at, :updated_at],
-                                          # category: [:id, :name, :created_at, :updated_at])
     end
 end
