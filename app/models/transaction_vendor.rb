@@ -1,10 +1,9 @@
 class TransactionVendor < ActiveRecord::Base
-  #attr_accessible :transaction_id, :vendor_id
-
   belongs_to :transaction
   belongs_to :vendor
 
-
+  validates :transaction_id, presence: true  
+  
   # This is not is use yet 2/2/2014
   # Proposal to replace the complex updating and saving in the Transaction model.
   # If this is deemed better by future me, it would also work well for categories.

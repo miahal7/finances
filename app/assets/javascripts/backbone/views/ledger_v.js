@@ -49,7 +49,7 @@ Finances.Views.Ledger = Backbone.View.extend({
 	
 	addTransaction: function(e){
 		var self = this;
-		console.log("IN ADDING TRANSACTION");
+
 		var transaction = new Finances.Models.Transaction({vendor: {name: ""},
 		 					 							   category: {name: ""},
 													   	   amount: 0,
@@ -59,18 +59,12 @@ Finances.Views.Ledger = Backbone.View.extend({
 													       deposit: false,
 													   	   ledger_month: "2013-05-01"});
 														   
-		console.log("Adding transaction -> " + JSON.stringify(transaction));
-		transaction.save({},
-							{success: function(response){
-								self.collection.add(response);
-								self.render();
-								
-								console.log("SAVE SUCCESS" + JSON.stringify(response));
-							}
-						});
-		console.log("Saved Transaction to DB, id is -> " + JSON.stringify(transaction));
-		// this.collection.add(transaction);
-		
+		transaction.save({}, {
+			success: function(response){
+				self.collection.add(response);
+				self.render();								
+			}
+		});		
 	},
 	
 	saveTransaction: function(e){

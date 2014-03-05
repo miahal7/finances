@@ -18,15 +18,17 @@ Finances.Models.Transaction = Backbone.Model.extend({
  		// console.log("model already exists, updating transaction");		  
 		 return base + this.id;
 	  }
-    }
-	// defaults: {
-	// 	date: '',
-	// 	amount: '',
-	// 	cleared: false,
-	// 	deposit: false,
-	// 	recurring: false,
-	// 	ledger_month: ''		
-	// }
+    },
+	defaults: {
+		date: '',
+		amount: '',
+		cleared: false,
+		deposit: false,
+		recurring: false,
+		ledger_month: '',
+		vendor: {name: ''},
+		category: {name: ''}		
+	}
 	
 	
 	
