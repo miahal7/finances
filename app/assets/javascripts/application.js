@@ -21,3 +21,4 @@
 
 // +++ Load Backbone application +++ //
 //= require backbone/finances
+

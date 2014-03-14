@@ -6,11 +6,11 @@ class TransactionsController < ApplicationController
   # GET /transactions.json
   def index
     @ledger_date = view_context.ledger_date
-    Transaction.duplicate_recurring(@ledger_date)
+    # Transaction.duplicate_recurring(@ledger_date)
     @transactions = Transaction.where(ledger_month: @ledger_date).includes(:vendor, :category)
 
     
-    logger.debug("transactions index -> @transactions: #{@transactions.to_json(include: [:vendor, :category])}")
+    # logger.debug("transactions index -> @transactions: #{@transactions[0].to_json(include: [:vendor, :category])}")
     
     respond_to do |format|
       format.html # index.html.erb
@@ -61,6 +61,6 @@ class TransactionsController < ApplicationController
     
     def transaction_params
       params.require(:transaction).permit(:id, :date, :amount, :cleared, :recurring, :deposit,
-                                          :ledger_month, :created_at, :updated_at)
+                                          :ledger_month, :created_at, :updated_at, vendor: [:name], category: [:name])
     end
 end

@@ -81,11 +81,16 @@ class VendorsController < ApplicationController
     end
   end
 
+  def names
+    vendors = Vendor.all.select(:id, :name)
+    Rails.logger.debug("VENDORS ARE -> #{vendors.inspect}")
+    
+    render json: vendors
+  end
+
   def named_like
     vendors = Vendor.named_like(params[:name])
-
-    respond_to do |format|
-      format.json { render json: vendors }
-    end
+    Rails.logger.debug("VENDORS NAMED LIKE #{params[:name]} ARE -> #{vendors.inspect}")
+    render json: vendors
   end
 end

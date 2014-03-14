@@ -6,7 +6,9 @@ Finances.Views.Ledger = Backbone.View.extend({
 	events: {
 		'click #new-transaction': "addTransaction",
 		'change .editable': "saveTransaction",
-		'click .delete': "deleteTransaction"
+		'click .delete': "deleteTransaction",
+		'typeahead:selected .vendor-typeahead' : 'saveTransaction'
+		//'click .vendor-typeahead': 'initVendorTypeahead'
 	},
 	
 	initialize: function(transactions){
@@ -18,8 +20,14 @@ Finances.Views.Ledger = Backbone.View.extend({
 		this.template = JST["backbone/templates/ledger_t"]; // set the template to be used
 		this.collection = new Finances.Collections.Ledger();
 		this.collection.fetch().done(function(){
-			self.render();			
+			self.render();	
+			
+			console.log("render complete");	
+			
+			self.vendorTypeaheadInit();	
 		});
+		
+		
 		// Finances.LedgerCollection = new Finances.Collections.Ledger();
 	},
 	
@@ -31,7 +39,8 @@ Finances.Views.Ledger = Backbone.View.extend({
 		this.$el.html(this.template({
 		    collection: this.collection.toJSON()
 		}));
-
+		
+				
 		return this;
 	},
 	
@@ -66,11 +75,61 @@ Finances.Views.Ledger = Backbone.View.extend({
 			}
 		});		
 	},
+	vendorTypeaheadInit: function(){
+		console.log("INIT VENDOR TA")
+		var self = this;
+		
+		var vendors = new Bloodhound({ 
+			name: 'vendors',
+			prefetch: {
+				url: "/vendors/names",
+				ttl: 1
+			},
+			limit: 10,
+		    remote: '/vendors/named_like?name=%QUERY',
 	
+			dupDetector: function(remote, local){
+				var duplicate = false;
+				if(remote.name == local.name){
+					duplicate = true;
+				}				
+				return duplicate;
+			},
+		    datumTokenizer: function(d) { 
+				//console.log(d)
+		        return Bloodhound.tokenizers.whitespace(d.name); 
+		    },
+		    queryTokenizer: Bloodhound.tokenizers.whitespace
+		});
+
+		vendors.initialize();
+	
+		$('.vendor-typeahead').typeahead(
+			{
+				minLength: 1,
+		    	highlight: true,
+  		
+			},
+			{
+			  displayKey: 'name',
+			  source: vendors.ttAdapter()
+			
+		});
+		
+		// $('.vendor-typeahead').bind('typeahead:selected', function(obj, datum, name) { 
+		// 	console.log("Works");
+		// 	self.saveTransaction();
+		//       		$(this).blur();     
+		// });
+	},
+
 	saveTransaction: function(e){
+		console.log("I guess something has changed..." );
+		
+		
 		var tr = $(e.currentTarget).closest("tr");
 		var id = $(tr).attr("data-model-id");
-		var vendorName = tr.find(".vendor").find("input").val();
+		var vendorName = $(e.currentTarget).closest(".vendor-typeahead").typeahead('val');
 		var categoryName = tr.find(".category").find("input").val();
 		var amount = tr.find(".amount").find("input").val();
 		var date = tr.find(".trans-date").find("input").val();
@@ -78,23 +137,23 @@ Finances.Views.Ledger = Backbone.View.extend({
 	    var recurring = tr.find(".recurring").find("input").is(":checked");
 	    var deposit = tr.find(".deposit").find("input").is(":checked");		
 		
-		// console.log("vendor: " +  vendor + ", category: " +  category + ", amount: " +  amount + ", date: " +  date + ",	cleared: " +  cleared + ", recurring: " +  recurring + ", deposit: " +  deposit);
+		console.log("vendor: " +  vendorName + ", category: " +  categoryName + ", amount: " +  amount + ", date: " +  date + ",	cleared: " +  cleared + ", recurring: " +  recurring + ", deposit: " +  deposit);
 		
 		var transaction = new Finances.Models.Transaction(this.collection.get(id).toJSON());
 		var trans_params = transaction;
 		var vendor = transaction.toJSON().vendor;
 		var category = transaction.toJSON().category;
-		//console.log("transaction -> " + transaction.toJSON().vendor.id);
+		// console.log("transaction -> " + JSON.stringify(transaction));
 		 
-		transaction.set({vendor: {id: vendor.id, name: vendorName, created_at: vendor.created_at, updated_at: vendor.updated_at},
-		 				 category: {id: category.id, name: categoryName, created_at: category.created_at, updated_at: category.updated_at},
+		transaction.set({vendor: {name: vendorName},
+		 				 category: {name: categoryName},
 					  	 amount: parseFloat(amount),
 					     date: date,
 					     cleared: cleared,
 					     recurring: recurring,
 					     deposit: deposit});
 		
-		// console.log(transaction.changed);
+		console.log("transaction -> " + JSON.stringify(transaction));
 		transaction.save();
 		
 	},

@@ -1,10 +1,10 @@
 Finances::Application.routes.draw do
-  get 'category_name/like', to: 'categories#named_like'
-  get 'transactions/:id/category_name/named_like', to: 'categories#named_like'
-
+  get 'categories/named_like', to: 'categories#named_like'
+  get 'categories/names', to: 'categories#names'
   resources :categories
 
-  get 'vendor_name/like', to: 'vendors#named_like'
+  get 'vendors/named_like', to: 'vendors#named_like'
+  get 'vendors/names', to: 'vendors#names'
   resources :vendors
 
   resources :transactions
@@ -14,5 +14,4 @@ Finances::Application.routes.draw do
   get 'index', to: 'transactions#index'
 
   root :to => 'transactions#index'
-  #root :to => 'application#index'
 end

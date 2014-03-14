@@ -81,11 +81,15 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def named_like
-    categories = Category.typeahead
+  def names
+    categories = Category.all.select(:id, :name)
+    
+    render json: categories
+  end
 
-    respond_to do |format|
-      format.json { render json: categories }
-    end
+  def named_like
+    categories = Category.named_like(params[:name])
+     
+    render json: categories
   end
 end

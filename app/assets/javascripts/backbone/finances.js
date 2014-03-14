@@ -43,3 +43,77 @@ $.ajaxSetup({
 
 
 
+
+function init_vendor_ta(){
+	console.log("INIT VENDOR TA")
+	
+	var vendors = new Bloodhound({ 
+		name: 'vendors',
+		prefetch: {
+			url: "/vendors/names",
+			ttl: 1
+		},
+		limit: 10,
+	    remote: '/vendors/named_like?name=%QUERY',
+	
+		dupDetector: function(remote, local){
+			var duplicate = false;
+			if(remote.name == local.name){
+				duplicate = true;
+			}				
+			return duplicate;
+		},
+	    datumTokenizer: function(d) { 
+			//console.log(d)
+	        return Bloodhound.tokenizers.whitespace(d.name); 
+	    },
+	    queryTokenizer: Bloodhound.tokenizers.whitespace
+	});
+
+	vendors.initialize();
+	
+	$('.vendor-typeahead, .typeahead').typeahead(
+		{
+			minLength: 1,
+	    	highlight: true,
+		},
+		{
+		  displayKey: 'name',
+		  source: vendors.ttAdapter()
+	});
+}
+// var categories = new Bloodhound({ 
+// 	name: 'categories',
+// 	prefetch: {
+// 		url: "/categories/names",
+// 		ttl: 1
+// 	},
+// 	limit: 10,
+//     remote: '/categories/named_like?name=%QUERY',
+// 	
+// 	dupDetector: function(remote, local){
+// 		var duplicate = false;
+// 		if(remote.name == local.name){
+// 			duplicate = true;
+// 		}				
+// 		return duplicate;
+// 	},
+//     datumTokenizer: function(d) { 
+//         return Bloodhound.tokenizers.whitespace(d.name); 
+//     },
+//     queryTokenizer: Bloodhound.tokenizers.whitespace
+// });
+
+// categories.initialize();
+
+
+
+// $('.category-typeahead').typeahead(
+// 	{
+// 		minLength: 1,
+//     	highlight: true,
+// 	},
+// 	{
+// 	  displayKey: 'name',
+// 	  source: categories.ttAdapter()
+// });

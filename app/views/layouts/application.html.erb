@@ -30,6 +30,8 @@
 
 
 <div id="app-content">Transaction Loading...<br></div>
+<input type="text" class="typeahead">
+
 <br>
 <hr>
 <br>
@@ -47,9 +49,11 @@
         options.username = "jlucio"; // <%#= session[:username] %>
 
         Finances.init(options);
+		
+		
+		
     });
 </script>
 
-<!--</div>-->
 </body>
 </html>

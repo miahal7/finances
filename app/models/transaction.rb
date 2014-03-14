@@ -38,9 +38,11 @@ class Transaction < ActiveRecord::Base
           # point the transaction_vendor/category to the correct vendor/category. Otherwise, leave it alone.
          # transaction_attr = "transaction_#{attr}".camelize.constantize.where(transaction_id: self.id)[0]
           trans_attr = self.send("transaction_#{attr}")
+          
           if trans_attr.send("#{attr}_id") != attribute.id
    				  trans_attr.send("#{attr}_id=", attribute.id)
             trans_attr.save
+          else
           end
         end 
 			else
