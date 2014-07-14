@@ -9,6 +9,9 @@ class Transaction < ActiveRecord::Base
   
   before_create :build_transaction_vendor, :build_transaction_category
   
+  # validates_associated :vendor
+  # validates_associated :category
+  
 	# When a transaction is destroyed, any recurring transactions from the previous month will duplicate if it 
   # doesn't exist in the current month.  This method prevents this by first setting recurring to false on the 
   # previous month's matching recurring transaction and then deleting the selected record
@@ -32,17 +35,18 @@ class Transaction < ActiveRecord::Base
         # Checks if the vendor or category has changed. If it has, updates the intermediate table to point to the 
         # new vendor or category 
         %w(vendor category).each do |attr| 
-          attribute = attr.capitalize.constantize.find_or_initialize_by(name: params[attr.to_sym][:name])
-          attribute.save          
-          # Get the associated transaction_vendor or transaction_category. If the vendor/category has changed then 
-          # point the transaction_vendor/category to the correct vendor/category. Otherwise, leave it alone.
-         # transaction_attr = "transaction_#{attr}".camelize.constantize.where(transaction_id: self.id)[0]
-          trans_attr = self.send("transaction_#{attr}")
+          unless params[attr.to_sym].blank?
+            attribute = attr.capitalize.constantize.find_or_initialize_by(name: params[attr.to_sym][:name])
+            attribute.save          
+            # Get the associated transaction_vendor or transaction_category. If the vendor/category has changed then 
+            # point the transaction_vendor/category to the correct vendor/category. Otherwise, leave it alone.
+           # transaction_attr = "transaction_#{attr}".camelize.constantize.where(transaction_id: self.id)[0]
+            trans_attr = self.send("transaction_#{attr}")
           
-          if trans_attr.send("#{attr}_id") != attribute.id
-   				  trans_attr.send("#{attr}_id=", attribute.id)
-            trans_attr.save
-          else
+            if trans_attr.send("#{attr}_id") != attribute.id
+     				  trans_attr.send("#{attr}_id=", attribute.id)
+              trans_attr.save
+            end
           end
         end 
 			else

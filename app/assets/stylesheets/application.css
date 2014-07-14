@@ -11,15 +11,13 @@
  *= require_self
  *= require_tree .
  *= require_content
+ *= require datepicker3
  */
 
 .tt-query,
 .tt-hint, .typeahead {
     width: 120px;
     height: 14px;
-/*    padding: 8px 12px;*/
-/*    font-size: 12px;*/
-/*    line-height: 12px;*/
     border: 2px solid #ccc;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -36,7 +34,9 @@
 }
 
 .tt-hint {
-    color: #999
+    color: #999;
+    left: 2px !important;
+    top: 1px !important;
 }
 
 .tt-highlight {

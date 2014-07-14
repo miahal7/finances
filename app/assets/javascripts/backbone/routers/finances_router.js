@@ -14,7 +14,8 @@ Finances.Router = Backbone.Router.extend({
     },
 
     index: function () {
-        new Finances.Views.Ledger();
+        new Finances.Collections.Ledger();
+        // new Finances.Views.Ledger({collection: new Finances.Collections.Ledger()});
 		//new Finances.Views.Transaction({model: new Finances.Models.Transaction()});
 		
         // console.log("index Route Loaded!");

@@ -7,184 +7,177 @@ Finances.Views.Ledger = Backbone.View.extend({
 		'click #new-transaction': "addTransaction",
 		'change .editable': "saveTransaction",
 		'click .delete': "deleteTransaction",
-		'typeahead:selected .vendor-typeahead' : 'saveTransaction'
-		//'click .vendor-typeahead': 'initVendorTypeahead'
-	},
-	
-	initialize: function(transactions){
-		var self = this;
-		
-		_.bindAll(this); // underscore event wiring
-		this.on('save', this.render, this);
+		"focus [data-behaviour~=datepicker]": "datepickerInit",
+		'click .vendor > input': 'typeaheadInit',
+		'click .category > input': 'typeaheadInit',
+		"change .amount > input": "moneyFormat"
 
-		this.template = JST["backbone/templates/ledger_t"]; // set the template to be used
-		this.collection = new Finances.Collections.Ledger();
-		this.collection.fetch().done(function(){
-			self.render();	
-			
-			console.log("render complete");	
-			
-			self.vendorTypeaheadInit();	
-		});
-		
-		
-		// Finances.LedgerCollection = new Finances.Collections.Ledger();
+		// 'typeahead:selected .vendor-typeahead' : 'saveTransaction',
+		// 'typeahead:selected .category-typeahead' : 'saveTransaction'
 	},
 	
+	initialize: function(){
+		this.template = JST["backbone/templates/ledger_t"]; 
+		/* Watch collection for an added model. If one is added, add a row. */
+		this.listenTo(this.collection, 'add', this.addRow);
+
+		return this;
+	},
+
 	render: function(){
-		
-		this.template = JST["backbone/templates/ledger_t"]; // set the template to be used
-		
-		// console.log("collection -> " + JSON.stringify(this.collection));
-		this.$el.html(this.template({
-		    collection: this.collection.toJSON()
-		}));
-		
+		this.$el.html(this.template());
+		/* Adds a row for each model in the collection */
+		this.collection.forEach(this.addRow, this);
 				
 		return this;
 	},
+
+	/* Adds an individual row to the ledger table */
+	addRow: function(transaction){
+		var transactionView = new Finances.Views.Transaction({
+			model: transaction,
+			collection: this.collection
+		});
+		transactionView.render();
+
+		console.log("total -> " + this.collection.total);
+	},
 	
 	deleteTransaction: function(e){
-		
 		var tr = $(e.currentTarget).closest("tr");
 		var id = $(tr).attr("data-model-id");
-		
-		var transaction = new Finances.Models.Transaction(this.collection.get(id).toJSON());
-		this.collection.remove(transaction);
-		console.log("Removing " + transaction);
-		this.render();
+		var transaction = this.collection.get(id);
+
+		tr.remove();
 		transaction.destroy();
 	},
 	
+	/* Adds a transaction to the ledger collection */
 	addTransaction: function(e){
+		this.collection.add(new Finances.Models.Transaction());
+		//persistence 
+	},
+
+	typeaheadInit: function(ev){
+		var self = this;
+		var type = $(ev.target).data('type');
+		var hasTypeahead = $(ev.target).hasClass("ta");
+		var url = "/" + type + "/names";
+		var remote = "/" + type + "/named_like?name=%QUERY";
+		var ta = {};		
+
+		if(!hasTypeahead){
+			ta = new Bloodhound({ 
+				name: type,
+				prefetch: { url: url, ttl: 1 },
+				limit: 10,
+				remote: remote,
+
+				dupDetector: function(remote, local){
+					var duplicate = (remote.name === local.name)? true : false;							
+					return duplicate;
+				},
+
+				datumTokenizer: function(d) { 
+					return Bloodhound.tokenizers.whitespace(d.name); 
+				},
+				queryTokenizer: Bloodhound.tokenizers.whitespace
+			});
+
+			ta.initialize();
+
+			$(ev.target).typeahead(
+				{ minLength: 1,	highlight: true }, 
+				{ displayKey: 'name', source: ta.ttAdapter()})
+			.addClass("ta");
+		}
+
+		$(ev.target).focus();
+	},
+
+	datepickerInit: function(ev){
+		var datePicker = $(ev.target);
 		var self = this;
 
-		var transaction = new Finances.Models.Transaction({vendor: {name: ""},
-		 					 							   category: {name: ""},
-													   	   amount: 0,
-													       date: "",
-													       cleared: false,
-													       recurring: false,
-													       deposit: false,
-													   	   ledger_month: "2013-05-01"});
-														   
-		transaction.save({}, {
-			success: function(response){
-				self.collection.add(response);
-				self.render();								
-			}
-		});		
-	},
-	vendorTypeaheadInit: function(){
-		console.log("INIT VENDOR TA")
-		var self = this;
-		
-		var vendors = new Bloodhound({ 
-			name: 'vendors',
-			prefetch: {
-				url: "/vendors/names",
-				ttl: 1
-			},
-			limit: 10,
-		    remote: '/vendors/named_like?name=%QUERY',
-	
-			dupDetector: function(remote, local){
-				var duplicate = false;
-				if(remote.name == local.name){
-					duplicate = true;
-				}				
-				return duplicate;
-			},
-		    datumTokenizer: function(d) { 
-				//console.log(d)
-		        return Bloodhound.tokenizers.whitespace(d.name); 
-		    },
-		    queryTokenizer: Bloodhound.tokenizers.whitespace
-		});
+	    /*Checking if the datepicker has the datepicker class prevents the datepicker
+	    object from instantiating multiple times for each input */
+	    if(!datePicker.hasClass("datepicker")){
+		    datePicker.datepicker({
+		    		format: "mm/dd/yyyy",
+		    		todayBtn: "linked",
+		    		forceParse: true,
+		    		autoclose: true,
+		    		todayHighlight: true,
+		    		language: "en",
+		    		orientation: "right"
+		    	}).on("change", function(e){
+		    		self.validateDate(datePicker);
+		    	});
+		    
+	    	datePicker.addClass("datepicker");
+	    }
 
-		vendors.initialize();
-	
-		$('.vendor-typeahead').typeahead(
-			{
-				minLength: 1,
-		    	highlight: true,
-  		
-			},
-			{
-			  displayKey: 'name',
-			  source: vendors.ttAdapter()
-			
-		});
-		
-		// $('.vendor-typeahead').bind('typeahead:selected', function(obj, datum, name) { 
-		// 	console.log("Works");
-		// 	self.saveTransaction();
-		//       		$(this).blur();     
-		// });
 	},
 
-	saveTransaction: function(e){
-		console.log("I guess something has changed..." );
-		
-		
-		var tr = $(e.currentTarget).closest("tr");
-		var id = $(tr).attr("data-model-id");
-		var vendorName = $(e.currentTarget).closest(".vendor-typeahead").typeahead('val');
-		var categoryName = tr.find(".category").find("input").val();
-		var amount = tr.find(".amount").find("input").val();
-		var date = tr.find(".trans-date").find("input").val();
-	    var cleared = tr.find(".cleared").find("input").is(":checked");
-	    var recurring = tr.find(".recurring").find("input").is(":checked");
-	    var deposit = tr.find(".deposit").find("input").is(":checked");		
-		
-		console.log("vendor: " +  vendorName + ", category: " +  categoryName + ", amount: " +  amount + ", date: " +  date + ",	cleared: " +  cleared + ", recurring: " +  recurring + ", deposit: " +  deposit);
-		
-		var transaction = new Finances.Models.Transaction(this.collection.get(id).toJSON());
-		var trans_params = transaction;
-		var vendor = transaction.toJSON().vendor;
-		var category = transaction.toJSON().category;
-		// console.log("transaction -> " + JSON.stringify(transaction));
-		 
-		transaction.set({vendor: {name: vendorName},
-		 				 category: {name: categoryName},
-					  	 amount: parseFloat(amount),
-					     date: date,
-					     cleared: cleared,
-					     recurring: recurring,
-					     deposit: deposit});
-		
-		console.log("transaction -> " + JSON.stringify(transaction));
-		transaction.save();
-		
+	validateDate: function(datePicker){
+		var date = datePicker.val();
+		var isDate = this.isDate(date);
+
+	    /*The default behavior of the datepicker is to make the input field blank when the same date as
+	    what is already in the text field is selected. To get around this, whenever the date becomes blank,
+	    revert the date back to the last valid selected date by saving the last valid date in data-date.*/
+	    if(!isDate){
+	    	datePicker.val(datePicker.data("date"));
+	    }
+	    else{
+	    	datePicker.data("date", date);
+	    }
 	},
-	
-	renderTransaction: function(item){
-		var transactionView = new Finances.Views.Transaction({
-			model: item
-		});
-		
-		this.$el.append(transactionView.render());
+
+	isDate: function (txtDate) {
+		var currVal = txtDate;
+		if(currVal == '')
+			return false;
+
+	    //Declare Regex
+	    var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+	    var dtArray = currVal.match(rxDatePattern); // is format OK?
+
+	    if (dtArray == null)
+	    	return false;
+
+	    //Checks for mm/dd/yyyy format.
+	    dtMonth = dtArray[1];
+	    dtDay= dtArray[3];
+	    dtYear = dtArray[5];
+
+	    if (dtMonth < 1 || dtMonth > 12)
+	    	return false;
+	    else if (dtDay < 1 || dtDay> 31)
+	    	return false;
+	    else if ((dtMonth==4 || dtMonth==6 || dtMonth==9 || dtMonth==11) && dtDay ==31)
+	    	return false;
+	    else if (dtMonth == 2)
+	    {
+	    	var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+	    	if (dtDay> 29 || (dtDay ==29 && !isleap))
+	    		return false;
+	    }
+	    return true;
 	},
-	
-	initVendorTypeAhead: function(e){
-		// var id = $(e.currentTarget).parent().attr("data-id");
-		
-		// var transaction = this.collection.get(id);
-				 
-		// var transaction = new Finances.Models.Transaction({
-		// 	model: item
-		// });
-		
-		// console.log("transaction before " + JSON.stringify(transaction));
-		
-		// transaction.set();
-		// transaction.save({amount: 55.55});
-		// console.log("transaction after " + JSON.stringify(transaction.toJSON()));
-		
-		// this.reset();
-		// transaction.render();
-		//console.log("Transaction -> " + JSON.stringify(transaction));
+
+	moneyFormat: function(ev){
+		var amount = $(ev.target).val();
+		amount = amount.formatMoney(2, '.', ',');
+
+		$(ev.target).val(amount);
+
+		this.collection.total = (parseFloat(this.collection.total) + parseFloat(amount)).formatMoney(2, '.', ',');
+
+		console.log("total -> " + this.collection.total);
+
 	}
+
 });
 
 

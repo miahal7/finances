@@ -15,9 +15,10 @@
 //= require lodash.underscore.min
 //= require backbone.min
 //= require bootstrap3.min
-//= require bootstrap-datepicker.min
+//= require bootstrap-datepicker
 //= require jquery.currency.min
 //= require typeahead.bundle.min
+//= require moment
 
 // +++ Load Backbone application +++ //
 //= require backbone/finances

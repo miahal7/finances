@@ -21,15 +21,11 @@ $.ajaxSetup({
         Views: {},
 
         init: function(options) {
-            // console.log("Initialization started");
-
             Finances.options = options;
-//            new Finances.Routers.TransactionsRouter(options);
             this.Router = new Finances.Router();
 
             if (!Backbone.history.started) {
                 Backbone.history.start();
-                // Backbone.history.started = true;
             }
 
             // console.log("Finance app initialized ");
@@ -41,79 +37,46 @@ $.ajaxSetup({
     
 })();
 
+// date formatting
+window.Finances.formatDate = function(date, format) {
+
+    var date = new Date(date);
+    var formatted = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear();
+
+    return formatted;
+    // console.log("date: " + date);
+    // console.log("format: " + format);
+
+    // if(date === null) return "-";
+
+    // try{
+    //     format = (typeof format !== "undefined") ? format : "MM/DD/YYYY";
+    //     if(!moment(date).isValid()){
+    //         return "-";
+    //     }
+    
+    //     var new_date = date.format(format);
+    //     console.log("new_date: " + new_date);
+    //      return date;
+    // }
+    // catch(e){
+    //     console.log("date formatting error: " + e.message);
+    //     return "<span style='color:red;'>-</span>";
+    // }
+};
+
+Number.prototype.formatMoney = String.prototype.formatMoney = function(c, d, t){
+    var n = this.toString().replace(/[a-zA-Z!@#$%^&*();:,]/g, ''),
+        c = isNaN(c = Math.abs(c)) ? 2 : c,
+        d = d == undefined ? "," : d,
+        t = t == undefined ? "." : t,
+        s = n < 0 ? "-" : "",
+        i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+        j = (j = i.length) > 3 ? j % 3 : 0;
+
+    var formatted = s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");    
 
 
 
-function init_vendor_ta(){
-	console.log("INIT VENDOR TA")
-	
-	var vendors = new Bloodhound({ 
-		name: 'vendors',
-		prefetch: {
-			url: "/vendors/names",
-			ttl: 1
-		},
-		limit: 10,
-	    remote: '/vendors/named_like?name=%QUERY',
-	
-		dupDetector: function(remote, local){
-			var duplicate = false;
-			if(remote.name == local.name){
-				duplicate = true;
-			}				
-			return duplicate;
-		},
-	    datumTokenizer: function(d) { 
-			//console.log(d)
-	        return Bloodhound.tokenizers.whitespace(d.name); 
-	    },
-	    queryTokenizer: Bloodhound.tokenizers.whitespace
-	});
-
-	vendors.initialize();
-	
-	$('.vendor-typeahead, .typeahead').typeahead(
-		{
-			minLength: 1,
-	    	highlight: true,
-		},
-		{
-		  displayKey: 'name',
-		  source: vendors.ttAdapter()
-	});
-}
-// var categories = new Bloodhound({ 
-// 	name: 'categories',
-// 	prefetch: {
-// 		url: "/categories/names",
-// 		ttl: 1
-// 	},
-// 	limit: 10,
-//     remote: '/categories/named_like?name=%QUERY',
-// 	
-// 	dupDetector: function(remote, local){
-// 		var duplicate = false;
-// 		if(remote.name == local.name){
-// 			duplicate = true;
-// 		}				
-// 		return duplicate;
-// 	},
-//     datumTokenizer: function(d) { 
-//         return Bloodhound.tokenizers.whitespace(d.name); 
-//     },
-//     queryTokenizer: Bloodhound.tokenizers.whitespace
-// });
-
-// categories.initialize();
-
-
-
-// $('.category-typeahead').typeahead(
-// 	{
-// 		minLength: 1,
-//     	highlight: true,
-// 	},
-// 	{
-// 	  displayKey: 'name',
-// 	  source: categories.ttAdapter()
-// });
+    return formatted;
+};

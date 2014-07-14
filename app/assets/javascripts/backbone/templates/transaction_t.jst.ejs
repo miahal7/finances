@@ -1,6 +1,26 @@
-<%= amount %>
-<%= date %>
-<%= cleared %>
-<%= recurring %>
-<%= deposit %>
-	
+<tr class="" data-model-id="<%= model.id %>">
+	<td class="vendor" style="margin: 3px; border: 1px solid grey;">
+		<input id="vendor-<%= model.id %>" type='text' placeholder='Vendor' data-type='vendors' class="editable" value="<%= model.vendor.name %>"/>
+	</td>
+	<td class="category" style="margin: 3px; border: 1px solid grey;">
+		<input id="category-<%= model.id %>" type='text' placeholder='Category' data-type='categories' class="editable" value="<%= model.category.name %>"/>
+	</td>
+	<td class="amount" style="margin: 3px; border: 1px solid grey;">
+		$<input type='text' class="editable" value="<%= model.amount.formatMoney(2, '.', ',') %>"/>
+	</td>
+	<td class="trans-date" style="margin: 3px; border: 1px solid grey;">
+		<input type='text' class="editable" placeholder='Date' data-behaviour="datepicker" value="<%= moment(model.date).format('MM/DD/YYYY') %>"/>
+	</td>				
+	<td class="cleared" style="margin: 3px; border: 1px solid grey;">
+		<input type='checkbox' class="editable" <%= (model.cleared)? 'checked=checked' : '' %>/>
+	</td>
+	<td class="recurring" style="margin: 3px; border: 1px solid grey;">
+		<input type='checkbox' class="editable" <%= (model.recurring)? 'checked=checked' : '' %>/>				
+	</td>
+	<td class="deposit" style="margin: 3px; border: 1px solid grey;">
+		<input type='checkbox' class="editable" <%= (model.deposit)? 'checked=checked' : '' %>/>
+	</td>
+	<td class="" style="margin: 3px; border: 1px solid grey;">
+		<button class='delete'>Delete</button>
+	</td>
+</tr>		 
