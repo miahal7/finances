@@ -5,12 +5,7 @@ Finances.Models = Finances.Models || {}; // initialize our models namespace if i
 Finances.Models.Transaction = Backbone.Model.extend({
 
     urlRoot: "/transactions",	   
-
-    initialize: function(){
-    	this.now = moment().format("MM/DD/YYYY");
-    	return this;
-    },
-
+    
     defaults: {
 		date: this.now,
 		amount: '',
@@ -19,6 +14,12 @@ Finances.Models.Transaction = Backbone.Model.extend({
 		recurring: false,
 		ledger_month: "05/01/2013",
 		vendor: {name: ''},
-		category: {name: ''}		
-	}
+		category: {name: ''}
+	},
+
+    initialize: function(){
+    	this.now = moment().format("MM/DD/YYYY");
+	
+    	return this;
+    }
 });

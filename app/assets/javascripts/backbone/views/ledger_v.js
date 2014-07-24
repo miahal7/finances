@@ -10,24 +10,33 @@ Finances.Views.Ledger = Backbone.View.extend({
 		"focus [data-behaviour~=datepicker]": "datepickerInit",
 		'click .vendor > input': 'typeaheadInit',
 		'click .category > input': 'typeaheadInit',
-		"change .amount > input": "moneyFormat"
+		"change .amount > input": "formatAmount"
 
 		// 'typeahead:selected .vendor-typeahead' : 'saveTransaction',
 		// 'typeahead:selected .category-typeahead' : 'saveTransaction'
 	},
-	
+
+	saveTransaction: function(ev){
+		var transaction = this.transactionFromEvent(ev);
+
+		// transaction.save();
+
+	},
+
 	initialize: function(){
 		this.template = JST["backbone/templates/ledger_t"]; 
 		/* Watch collection for an added model. If one is added, add a row. */
 		this.listenTo(this.collection, 'add', this.addRow);
-
+		this.listenTo(this.collection, 'add', this.total);
 		return this;
 	},
 
 	render: function(){
 		this.$el.html(this.template());
+		// new Finances.Views.Totals({ collection: this.collection });
+
 		/* Adds a row for each model in the collection */
-		this.collection.forEach(this.addRow, this);
+		// this.collection.forEach(this.addRow, this);
 				
 		return this;
 	},
@@ -40,7 +49,7 @@ Finances.Views.Ledger = Backbone.View.extend({
 		});
 		transactionView.render();
 
-		console.log("total -> " + this.collection.total);
+		// console.log("total -> " + this.collection.total);
 	},
 	
 	deleteTransaction: function(e){
@@ -54,7 +63,9 @@ Finances.Views.Ledger = Backbone.View.extend({
 	
 	/* Adds a transaction to the ledger collection */
 	addTransaction: function(e){
-		this.collection.add(new Finances.Models.Transaction());
+		var rand = 99999 + Math.floor(Math.random() * 999999);
+
+		this.collection.add(new Finances.Models.Transaction({tempId: rand}));
 		//persistence 
 	},
 
@@ -166,18 +177,49 @@ Finances.Views.Ledger = Backbone.View.extend({
 	    return true;
 	},
 
-	moneyFormat: function(ev){
-		var amount = $(ev.target).val();
-		amount = amount.formatMoney(2, '.', ',');
+	total: function(transaction){
+		var difference = this.calculateAmountChange(transaction);
 
+		this.collection.total = (Number(this.collection.total) + Number(difference));
+		this.collection.totalView.render();
+
+		return this;
+	},
+
+	calculateAmountChange: function(transaction){
+		var amount = transaction.toJSON().amount.toString().replace(/,/g, "");
+		var previousAmount = transaction.previous("amount") && transaction.previous("amount").toString().replace(/,/g, "") || 0;
+		var deposit = transaction.toJSON().deposit;
+		var cleared = transaction.toJSON().cleared;
+		var difference = amount - previousAmount;
+		var operator = ((deposit && difference < 0) || (!deposit && difference >= 0))? "-" : "";
+		
+		return eval(operator + Math.abs(difference));
+	},
+
+	/* Formats the amount field and then adds the formatted amount to the ledger total */
+	formatAmount: function(ev){
+		var transaction = this.transactionFromEvent(ev);
+		var amount = $(ev.target).val().formatMoney(2, '.', ',');
+
+
+		//TODO: need to do the below for several fields	
+		transaction.set({amount: amount});
 		$(ev.target).val(amount);
 
-		this.collection.total = (parseFloat(this.collection.total) + parseFloat(amount)).formatMoney(2, '.', ',');
+		this.total(transaction);
 
-		console.log("total -> " + this.collection.total);
+		return this;
+	},
 
+	/* Gets a transaction model from the ledger collection, old or new */
+	transactionFromEvent: function(ev){
+		var tr = $(ev.target).closest("tr");
+		var id = tr.data("transaction-id");
+		var transaction = this.collection.get(id) || this.collection.findWhere({tempId: id});
+
+		return transaction;
 	}
-
 });
 
 

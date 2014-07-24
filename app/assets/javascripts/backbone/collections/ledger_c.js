@@ -9,19 +9,19 @@ Finances.Collections.Ledger = Backbone.Collection.extend({
     url: '/transactions/',
 
     initialize: function(){
-  //   	var ledger = this.fetch({
-		// 	success: function(model, response){
-		// 		// console.log("");
-		// 	},
-		// 	error: function(model, response){
-		// 		console.log("There was a problem retrieving the transaction collection");
-		// 	}
-		// });
 		this.fetch();
-		// console.log("init 1");
 		this.total = 0;
-    	var foo = new Finances.Views.Ledger({collection: this}).render();
-    	// console.log("init 2");
+
+    	new Finances.Views.Ledger({collection: this}).render();
+    	this.totalView = new Finances.Views.Totals({collection: this});
+
+    	this.on('')
+    },
+
+    findById: function(){
+
     }
+
+
 });
 

@@ -1,4 +1,4 @@
-<tr class="" data-model-id="<%= model.id %>">
+<tr class="" data-transaction-id="<%= model.id || model.tempId %>">
 	<td class="vendor" style="margin: 3px; border: 1px solid grey;">
 		<input id="vendor-<%= model.id %>" type='text' placeholder='Vendor' data-type='vendors' class="editable" value="<%= model.vendor.name %>"/>
 	</td>
