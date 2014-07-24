@@ -10,7 +10,8 @@ Finances.Views.Ledger = Backbone.View.extend({
 		"focus [data-behaviour~=datepicker]": "datepickerInit",
 		'click .vendor > input': 'typeaheadInit',
 		'click .category > input': 'typeaheadInit',
-		"change .amount > input": "formatAmount"
+		"change .amount > input": "formatAmount",
+		"change .deposit > input" : "updateTotal"
 
 		// 'typeahead:selected .vendor-typeahead' : 'saveTransaction',
 		// 'typeahead:selected .category-typeahead' : 'saveTransaction'
@@ -188,12 +189,25 @@ Finances.Views.Ledger = Backbone.View.extend({
 
 	calculateAmountChange: function(transaction){
 		var amount = transaction.toJSON().amount.toString().replace(/,/g, "");
-		var previousAmount = transaction.previous("amount") && transaction.previous("amount").toString().replace(/,/g, "") || 0;
 		var deposit = transaction.toJSON().deposit;
+		var prevAmount = transaction.previous("amount") && transaction.previous("amount").toString().replace(/,/g, "") || 0;
+		var prevDeposit = transaction.previous("deposit");
 		var cleared = transaction.toJSON().cleared;
-		var difference = amount - previousAmount;
-		var operator = ((deposit && difference < 0) || (!deposit && difference >= 0))? "-" : "";
-		
+		var difference, operator;
+
+		/* Sets the sign of the amount and prevAmount depending on if they are a debit or credit (deposit) */
+		var setSign = function(deposit, amount){
+			var operator = (deposit)? "+" : "-";
+			return Number(operator + amount);
+		}
+
+		amount = setSign(deposit, amount);
+		prevAmount = setSign(prevDeposit, prevAmount);
+
+		difference = (amount >= prevAmount)? amount - prevAmount : -(amount - prevAmount);
+
+		operator = ((deposit && difference < 0) || (!deposit && difference >= 0))? "-" : "";
+
 		return eval(operator + Math.abs(difference));
 	},
 
@@ -202,13 +216,24 @@ Finances.Views.Ledger = Backbone.View.extend({
 		var transaction = this.transactionFromEvent(ev);
 		var amount = $(ev.target).val().formatMoney(2, '.', ',');
 
-
 		//TODO: need to do the below for several fields	
 		transaction.set({amount: amount});
 		$(ev.target).val(amount);
 
 		this.total(transaction);
 
+		return this;
+	},
+
+	updateTotal: function(ev){
+		// console.log("updateTotal");
+		var transaction = this.transactionFromEvent(ev);
+		var deposit = $(ev.target).prop('checked');
+
+		transaction.set({deposit: deposit});
+
+		// this.collection.total = (Number(this.collection.total) + Number(transaction.toJSON().amount));
+		this.total(transaction);
 		return this;
 	},
 
