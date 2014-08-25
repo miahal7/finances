@@ -31,6 +31,24 @@ $.ajaxSetup({
     };    
 })();
 
+$.fn.scrollTo = function( target, options, callback ){
+  if(typeof options === 'function' && arguments.length === 2){ callback = options; options = target; }
+  var settings = $.extend({
+    scrollTarget  : target,
+    offsetTop     : 50,
+    duration      : 500,
+    easing        : 'swing'
+  }, options);
+  return this.each(function(){
+    var scrollPane = $(this);
+    var scrollTarget = (typeof settings.scrollTarget == "number") ? settings.scrollTarget : $(settings.scrollTarget);
+    var scrollY = (typeof scrollTarget == "number") ? scrollTarget : scrollTarget.offset().top + scrollPane.scrollTop() - parseInt(settings.offsetTop);
+    scrollPane.animate({scrollTop : scrollY }, parseInt(settings.duration), settings.easing, function(){
+      if (typeof callback == 'function') { callback.call(this); }
+    });
+  });
+}
+
 Number.prototype.formatMoney = String.prototype.formatMoney = function(c, d, t){
     var n = this.toString().replace(/[a-zA-Z!@#$%^&*();:,]/g, ''),
         c = isNaN(c = Math.abs(c)) ? 2 : c,
@@ -44,3 +62,35 @@ Number.prototype.formatMoney = String.prototype.formatMoney = function(c, d, t){
 
     return formatted;
 };
+
+Finances.isDate = function (txtDate) {
+  var currVal = txtDate;
+  if(currVal == '')
+    return false;
+
+    //Declare Regex
+    var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+    var dtArray = currVal.match(rxDatePattern); // is format OK?
+
+    if (dtArray == null)
+      return false;
+
+    //Checks for mm/dd/yyyy format.
+    dtMonth = dtArray[1];
+    dtDay= dtArray[3];
+    dtYear = dtArray[5];
+
+    if (dtMonth < 1 || dtMonth > 12)
+      return false;
+    else if (dtDay < 1 || dtDay> 31)
+      return false;
+    else if ((dtMonth==4 || dtMonth==6 || dtMonth==9 || dtMonth==11) && dtDay ==31)
+      return false;
+    else if (dtMonth == 2)
+    {
+      var isleap = (dtYear % 4 == 0 && (dtYear % 100 != 0 || dtYear % 400 == 0));
+      if (dtDay> 29 || (dtDay ==29 && !isleap))
+        return false;
+    }
+    return true;
+}

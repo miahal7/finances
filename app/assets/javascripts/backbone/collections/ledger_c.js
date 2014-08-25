@@ -1,27 +1,21 @@
 // js/collections/ledger.js
 
-Finances.Collections = Finances.Collections || {}; // initialize our collections namespace if it has not been done already
+Finances.Collections = Finances.Collections || {};
 
 Finances.Collections.Ledger = Backbone.Collection.extend({
 
-    model: Finances.Models.Transaction,
+  model: Finances.Models.Transaction,
 
-    url: '/transactions/',
+  url: '/transactions/',
 
-    initialize: function(){
-		this.fetch();
-		this.total = 0;
+  initialize: function(){
+    var self = this;
+    this.fetch();
 
-    	new Finances.Views.Ledger({collection: this}).render();
-    	this.totalView = new Finances.Views.Totals({collection: this});
+    this.bankBalance = 0;
+    this.balance = 0;
 
-    	this.on('')
-    },
-
-    findById: function(){
-
-    }
-
-
+    new Finances.Views.Ledger({collection: this}).render();
+    this.balancesView = new Finances.Views.Balances({collection: this});   
+  }
 });
-

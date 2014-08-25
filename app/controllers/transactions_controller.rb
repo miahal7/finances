@@ -15,7 +15,7 @@ class TransactionsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @transactions[0..5].to_json(include: [:vendor, :category]) }
+      format.json { render json: @transactions.to_json(include: [:vendor, :category]) }
     end
   end
 
@@ -30,27 +30,34 @@ class TransactionsController < ApplicationController
 
   # POST /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    # @transaction = Transaction.new(transaction_params)
 
-    if @transaction.save(transaction_params)
-      render json: @transaction, status: :created, location: @transaction 
-    else
-      render json: @transaction.errors, status: :unprocessable_entity
-    end
+    # if @transaction.save(transaction_params)
+    #   render json: @transaction, status: :created, location: @transaction 
+    # else
+    #   render json: @transaction.errors, status: :unprocessable_entity
+    # end
   end
 
   # PUT /transactions/1.json
   def update
-    if @transaction.update_all(transaction_params, params)
-      render json: @transaction, layout: false
-    else
-      render json: 'unable to update', status: :unprocessable_entity, layout: false
-    end
+
+    Rails.logger.debug("Saving transaction as:")    
+    Rails.logger.debug("".center(100, "="))
+    
+    Rails.logger.debug("#{params.inspect}")
+    Rails.logger.debug("".center(100, "="))
+
+    # if @transaction.update_all(transaction_params, params)
+    #   render json: @transaction, layout: false
+    # else
+    #   render json: 'unable to update', status: :unprocessable_entity, layout: false
+    # end
   end
 
   # DELETE /transactions/1.json
   def destroy    
-    @transaction.recurring ? @transaction.destroy_and_remove_recurring : @transaction.destroy
+    # @transaction.recurring ? @transaction.destroy_and_remove_recurring : @transaction.destroy
        
     render json: "success", layout: false, status: :ok    
   end

@@ -1,21 +1,23 @@
 <!--find me in templates/transacion.jst.ejs<br>-->
-<button id="new-transaction">New</button>
-<div id="ledger-totals"></div>
-<table>
+
+<div id="floating-header">
+	<button id="new-transaction">New</button>
+	<div id="ledger-totals"></div>
+</div>
+
+<table id="ledger-table">
 	<thead>
 		<tr>
 			<td style="margin: 3px; border: 1px solid grey;">Vendor</td>
 			<td style="margin: 3px; border: 1px solid grey;">Category</td>
 			<td style="margin: 3px; border: 1px solid grey;">Amount</td>
 			<td style="margin: 3px; border: 1px solid grey;">Date</td>
-			<td style="margin: 3px; border: 1px solid grey;">Cleared</td>
-			<td style="margin: 3px; border: 1px solid grey;">Recurring</td>
-			<td style="margin: 3px; border: 1px solid grey;">Deposit</td>
+			<td style="margin: 3px; border: 1px solid grey;">C - R - D</td>
 			<td style="margin: 3px; border: 1px solid grey;"></td>
 		</tr>
 	</thead>
 	<tbody id="ledger-tbody">
-	
+		<!-- This is where the transaction templates are rendered -->
 	</tbody>
 </table>
 

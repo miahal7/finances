@@ -12,6 +12,22 @@ class Transaction < ActiveRecord::Base
   # validates_associated :vendor
   # validates_associated :category
   
+
+  def self.balance
+    @transactions = Transaction.all()
+    @amount = 0
+    @transactions.each do |t|
+      @amount = @amount + t.amount
+
+    end
+
+    return @amount
+  end
+
+  def self.bank_balance
+    @transactions = Transaction.all()
+  end
+
 	# When a transaction is destroyed, any recurring transactions from the previous month will duplicate if it 
   # doesn't exist in the current month.  This method prevents this by first setting recurring to false on the 
   # previous month's matching recurring transaction and then deleting the selected record

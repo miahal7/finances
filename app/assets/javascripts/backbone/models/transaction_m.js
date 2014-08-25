@@ -17,9 +17,20 @@ Finances.Models.Transaction = Backbone.Model.extend({
 		category: {name: ''}
 	},
 
-    initialize: function(){
+    initialize: function () {
     	this.now = moment().format("MM/DD/YYYY");
-	
+		
     	return this;
+    },
+
+    save: function (attributes, options) {
+      console.log("transaction -> " + JSON.stringify(this));
+
+      console.log("Saving Transaction");
+      Backbone.Model.prototype.save.call(this, attributes, options);
+
+ 
+
+      // this.save();
     }
 });

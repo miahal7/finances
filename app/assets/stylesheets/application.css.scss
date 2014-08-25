@@ -14,6 +14,24 @@
  *= require datepicker3
  */
 
+
+#floating-header {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    color: #666666;
+
+}
+
+#ledger-table {
+    position: relative;
+    z-index: 10;
+    top: 70px;
+}
+
 .tt-query,
 .tt-hint, .typeahead {
     width: 120px;
@@ -41,6 +59,9 @@
 
 .tt-highlight {
 	color: red;
+    &:hover{
+        color: red;
+    }
 }
 
 .tt-dropdown-menu {
@@ -56,6 +77,12 @@
     -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
     -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-cursor {
+   color: white;
+   background-color: rgba(0,70,180,.5);
+   cursor: pointer;
 }
 
 .tt-suggestion {
