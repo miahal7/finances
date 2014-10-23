@@ -11,7 +11,48 @@ Finances.Views.Ledger = Backbone.View.extend({
 		"focus [data-behaviour~=datepicker]": "datepickerInit", // Picking date saves transaction
 		"focus .vendor > input, .category > input": "typeaheadInit", // Saves Transaction on suggestion select
 		"change .amount > input": "formatAmount", // Saves Transaction
-		"change input.deposit, input.cleared" : "updateBalances" // Saves Transaction
+		"change input.deposit, input.cleared" : "updateBalances", // Saves Transaction
+		"change .recurring": "saveRecurring", // Saves Transaction
+		"click #next-month, #prev-month": "changeLedgerMonth"
+	},
+
+	changeLedgerMonth: function (ev) {
+		var prev = $(ev.target).attr("id").indexOf("prev") > -1;
+
+		var date = this.collection.ledger_month;
+		date = date.split("-");
+		date = date[1] + "-" + date[2] + "-" + date[0];
+
+		// In yyyy-mm-dd format, must be in mm-dd-yyyy or parsed
+		var ledgerDate = new Date(date);
+		var month = ledgerDate.getMonth()+1;
+		var year = ledgerDate.getFullYear();
+
+		if(prev === true) {
+			month = month - 1;
+			if(month === -1){
+				month = "12";
+				year = year - 1;				
+			}
+		}
+		else {
+			month = month + 1;
+			if(month === "13") {
+				month = "01";
+				year = year + 1;
+			}
+		}
+
+		if(month < 10) {
+			month = "0" + month.toString();
+		}
+
+		var newDate = year + "-" + month + "-01";
+
+		console.log("new date is -> " + newDate );
+		
+		new Finances.Collections.Ledger([], {ledger_month: newDate});
+
 	},
 
 	initialize: function(){
@@ -273,6 +314,16 @@ Finances.Views.Ledger = Backbone.View.extend({
  		transaction.save();
 
 		this.total(transaction);
+		return this;
+	},
+
+	saveRecurring: function(ev) {
+		var transaction = this.transactionFromEvent(ev);
+  	var recurring = $(ev.target).prop('checked');
+
+		transaction.set({recurring: recurring});
+		transaction.save()
+
 		return this;
 	},
 

@@ -6,11 +6,19 @@ Finances.Collections.Ledger = Backbone.Collection.extend({
 
   model: Finances.Models.Transaction,
 
+  ledger_month: "",
+
   url: '/transactions/',
 
-  initialize: function(){
+  initialize: function(models, options){
     var self = this;
-    this.fetch();
+    this.ledger_month = options.ledger_month
+
+    console.log("this.ledger_month -> " + options.ledger_month);
+
+    this.fetch({data: {ledger_month: options.ledger_month}});
+
+
 
     this.bankBalance = 0;
     this.balance = 0;

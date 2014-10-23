@@ -31,6 +31,8 @@ $.ajaxSetup({
     };    
 })();
 
+
+/* When a new transaction is added to the ledger, this function scrolls the page down to that row */
 $.fn.scrollTo = function( target, options, callback ){
   if(typeof options === 'function' && arguments.length === 2){ callback = options; options = target; }
   var settings = $.extend({

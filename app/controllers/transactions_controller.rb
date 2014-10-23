@@ -5,7 +5,10 @@ class TransactionsController < ApplicationController
 
   # GET /transactions.json
   def index
-    @ledger_date = view_context.ledger_date
+    @ledger_date = params[:ledger_month]
+    Rails.logger.debug("@ledger_date".center(100, "="))
+    Rails.logger.debug("#{params[:ledger_month].inspect}")
+    Rails.logger.debug("".center(100, "="))
     # Transaction.duplicate_recurring(@ledger_date)
     @transactions = Transaction.where(ledger_month: @ledger_date).includes(:vendor, :category)
     # @transactions = Transaction.all.includes(:vendor, :category)
@@ -48,11 +51,11 @@ class TransactionsController < ApplicationController
     Rails.logger.debug("#{params.inspect}")
     Rails.logger.debug("".center(100, "="))
 
-    # if @transaction.update_all(transaction_params, params)
-    #   render json: @transaction, layout: false
-    # else
-    #   render json: 'unable to update', status: :unprocessable_entity, layout: false
-    # end
+    if @transaction.update_all(transaction_params, params)
+      render json: @transaction, layout: false
+    else
+      render json: 'unable to update', status: :unprocessable_entity, layout: false
+    end
   end
 
   # DELETE /transactions/1.json
