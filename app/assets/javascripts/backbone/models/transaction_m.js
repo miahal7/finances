@@ -12,7 +12,7 @@ Finances.Models.Transaction = Backbone.Model.extend({
 		cleared: false,
 		deposit: false,
 		recurring: false,
-		ledger_month: "05/01/2013",
+		ledger_month: "12/01/2014",
 		vendor: {name: ''},
 		category: {name: ''}
 	},
