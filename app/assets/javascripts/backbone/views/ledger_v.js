@@ -18,7 +18,6 @@ Finances.Views.Ledger = Backbone.View.extend({
 
 	changeLedgerMonth: function (ev) {
 		var prev = $(ev.target).attr("id").indexOf("prev") > -1;
-
 		var date = this.collection.ledger_month;
 		date = date.split("-");
 		date = date[1] + "-" + date[2] + "-" + date[0];
@@ -29,16 +28,20 @@ Finances.Views.Ledger = Backbone.View.extend({
 		var year = ledgerDate.getFullYear();
 
 		if(prev === true) {
-			month = month - 1;
-			if(month === -1){
-				month = "12";
+
+			month = parseInt(month - 1);
+
+			if(month === 0){
+				month = 12;
 				year = year - 1;				
 			}
 		}
 		else {
-			month = month + 1;
-			if(month === "13") {
-				month = "01";
+			month = parseInt(month + 1);
+
+			// Intentionally not checking type with == instead of ===
+			if(month === 13) {
+				month = 1;
 				year = year + 1;
 			}
 		}
@@ -49,10 +52,10 @@ Finances.Views.Ledger = Backbone.View.extend({
 
 		var newDate = year + "-" + month + "-01";
 
-		console.log("new date is -> " + newDate );
-		
-		new Finances.Collections.Ledger([], {ledger_month: newDate});
+		// If you don't undelegate events, the events will fire for how many views have been renedered.
+		this.undelegateEvents();
 
+		new Finances.Collections.Ledger([], {ledger_month: newDate});
 	},
 
 	initialize: function(){
@@ -62,6 +65,7 @@ Finances.Views.Ledger = Backbone.View.extend({
 		this.listenTo(this.collection, 'add', this.addRow);
 		this.listenTo(this.collection, 'add', this.total);
 		this.listenTo(this.collection, 'remove', this.total);
+		this.collection.balance = new Finances.Models.Balance({ledger_month: this.collection.ledger_month});
 
 		return this;
 	},
@@ -253,7 +257,6 @@ Finances.Views.Ledger = Backbone.View.extend({
 		var amount = 0;
 		var deposit = false;
 		var cleared = false;
-		this.collection.balance = 0;
 		this.collection.bankBalance = 0;
 
 		this.collection.each(function(transaction){
