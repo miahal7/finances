@@ -1,12 +1,10 @@
 #Put the bank download (as bk_download.csv) in the rails root path then just run "ruby csv_extract.rb"
 require 'csv'
 
-extract
-
 def extract
 	puts "STARTING EXTRACT OF #{@file}"
 
-	csv = CSV.open("#{Rails.root}/bk_download.csv")
+	csv = CSV.open("#{Rails.root}/bk_download.csv", row_sep: "\r")
 
 	csv.each_with_index do |row, i|
 		if row.blank?
@@ -52,3 +50,5 @@ def humanize_phrase(phrase)
 	phrase = "#{phrase.split('   ')[0].split('#')[0].split('- ')[0].split('**')[0].split('~')[0]}"
 	phrase.downcase.split.map(&:capitalize).join(' ')
 end
+
+# extract
