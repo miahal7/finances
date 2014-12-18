@@ -7,6 +7,9 @@ Finances::Application.routes.draw do
   get 'vendors/names', to: 'vendors#names'
   resources :vendors
 
+  
+  get 'transactions/balance', to: 'transactions#balance'
+  get 'transactions/bank_balance', to: 'transactions#bank_balance'
   resources :transactions
 
   resources :users

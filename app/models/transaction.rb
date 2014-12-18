@@ -13,19 +13,34 @@ class Transaction < ActiveRecord::Base
   # validates_associated :category
   
 
-  def self.balance
-    @transactions = Transaction.all()
+  def self.balance(ledger_month)
+    @transactions = Transaction.where.not(ledger_month: ledger_month)
     @amount = 0
+    
     @transactions.each do |t|
-      @amount = @amount + t.amount
-
+      if t.deposit == true
+        @amount = @amount + t.amount 
+      else
+        @amount = @amount - t.amount 
+      end
     end
 
     return @amount
   end
 
-  def self.bank_balance
-    @transactions = Transaction.all()
+  def self.bank_balance(ledger_month)
+    @transactions = Transaction.where.not(ledger_month: ledger_month, cleared: false)
+    @amount = 0
+    
+    @transactions.each do |t|
+      if t.deposit == true
+        @amount = @amount + t.amount 
+      else
+        @amount = @amount - t.amount 
+      end
+    end
+
+    return @amount  
   end
 
 	# When a transaction is destroyed, any recurring transactions from the previous month will duplicate if it 

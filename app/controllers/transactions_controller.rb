@@ -21,6 +21,16 @@ class TransactionsController < ApplicationController
       format.json { render json: @transactions.to_json(include: [:vendor, :category]) }
     end
   end
+  
+  def bank_balance
+    @bank_balance = Transaction.bank_balance(params[:ledger_month])
+    render json: @bank_balance.to_json
+  end
+
+  def balance
+    @balance = Transaction.balance(params[:ledger_month])
+    render json: @balance.to_json
+  end
 
   # GET /transactions/1.json
   def show
