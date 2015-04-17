@@ -16,7 +16,7 @@ class Transaction < ActiveRecord::Base
   def self.balance(ledger_month)
     @transactions = Transaction.where.not(ledger_month: ledger_month)
     @amount = 0
-    
+
     @transactions.each do |t|
       if t.deposit == true
         @amount = @amount + t.amount 
@@ -25,7 +25,9 @@ class Transaction < ActiveRecord::Base
       end
     end
 
-    return @amount
+
+
+    return { amount: @amount }
   end
 
   def self.bank_balance(ledger_month)

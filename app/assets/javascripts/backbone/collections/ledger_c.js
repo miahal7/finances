@@ -12,7 +12,7 @@ Finances.Collections.Ledger = Backbone.Collection.extend({
 
   initialize: function(models, options){
     var self = this;
-    this.ledger_month = options.ledger_month
+    this.ledger_month = options.ledger_month;
 
     console.log("this.ledger_month -> " + options.ledger_month);
 
@@ -20,10 +20,10 @@ Finances.Collections.Ledger = Backbone.Collection.extend({
 
 
 
-    this.bankBalance = 0;
-    this.balance = 0;
+    // this.bankBalance = 0;
+    // this.balance = 0;
 
     new Finances.Views.Ledger({collection: this}).render();
-    this.balancesView = new Finances.Views.Balances({collection: this});   
+    // this.balancesView = new Finances.Views.Balances({collection: this});   
   }
 });

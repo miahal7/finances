@@ -14,7 +14,11 @@ Finances.Router = Backbone.Router.extend({
     },
 
     index: function () {
-        new Finances.Collections.Ledger([], {ledger_month: "2014-12-01"});
+        this.ledger_month = "2014-12-01";
+        new Finances.Collections.Ledger([], {ledger_month: this.ledger_month});
+
+
+
         // new Finances.Views.Ledger({collection: new Finances.Collections.Ledger()});
 		//new Finances.Views.Transaction({model: new Finances.Models.Transaction()});
 		

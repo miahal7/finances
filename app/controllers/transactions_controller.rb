@@ -86,3 +86,9 @@ class TransactionsController < ApplicationController
                                           vendor: [:name], category: [:name])
     end
 end
+
+
+
+
+
+# [[3.24, 8.65, 18.0, 23.17, 40.4], [3.24, 5.0, 5.0, 25.02, 55.2]]

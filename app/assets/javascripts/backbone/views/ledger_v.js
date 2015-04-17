@@ -16,6 +16,26 @@ Finances.Views.Ledger = Backbone.View.extend({
 		"click #next-month, #prev-month": "changeLedgerMonth"
 	},
 
+	initialize: function(){
+		this.template = JST["backbone/templates/ledger_t"]; 
+		/* Watch collection for an added model. If one is added, add a row.
+			 Also, when a row is added or deleted, change the total to reflect */
+		this.listenTo(this.collection, 'add', this.addRow);
+		this.listenTo(this.collection, 'add', this.total);
+		this.listenTo(this.collection, 'remove', this.total);
+		// this.collection.balance = new Finances.Models.Balance({ledger_month: this.collection.ledger_month});
+
+		return this;
+	},
+
+	render: function () {
+		this.$el.html(this.template());
+
+		this.balance = new Finances.Models.Balance({ledger: this.collection});
+
+		return this;
+	},
+
 	changeLedgerMonth: function (ev) {
 		var prev = $(ev.target).attr("id").indexOf("prev") > -1;
 		var date = this.collection.ledger_month;
@@ -58,24 +78,6 @@ Finances.Views.Ledger = Backbone.View.extend({
 		new Finances.Collections.Ledger([], {ledger_month: newDate});
 	},
 
-	initialize: function(){
-		this.template = JST["backbone/templates/ledger_t"]; 
-		/* Watch collection for an added model. If one is added, add a row.
-			 Also, when a row is added or deleted, change the total to reflect */
-		this.listenTo(this.collection, 'add', this.addRow);
-		this.listenTo(this.collection, 'add', this.total);
-		this.listenTo(this.collection, 'remove', this.total);
-		this.collection.balance = new Finances.Models.Balance({ledger_month: this.collection.ledger_month});
-
-		return this;
-	},
-
-	render: function () {
-		this.$el.html(this.template());
-				
-		return this;
-	},
-	
 	/* Adds a transaction to the ledger collection and scroll to it*/
 	addTransaction: function (e) {
 		var rand = 99999 + Math.floor(Math.random() * 999999);
@@ -283,7 +285,14 @@ Finances.Views.Ledger = Backbone.View.extend({
 			self.collection.bankBalance = Number(self.collection.bankBalance) + Number(amount);
 		});
 
-		this.collection.balancesView.render();
+
+
+		// this.balancesView.render();
+		// setTimeout(function(){
+		console.log("this.balance -> " + JSON.stringify(this.balance.amount));
+
+		// }, 100);
+
 
 		return this;
 	},	
