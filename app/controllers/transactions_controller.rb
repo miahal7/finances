@@ -93,4 +93,15 @@ class TransactionsController < ApplicationController
       # render json: @transaction, layout: false
     end
   end
+
+  private
+    def set_transaction
+      @transaction = Transaction.find(params[:id])
+    end
+    
+    def transaction_params
+      params.require(:transaction).permit(:id, :date, :amount, :cleared, :recurring, :deposit,
+                                          :ledger_month, :created_at, :updated_at, 
+                                          vendor: [:name], category: [:name])
+    end
 end
