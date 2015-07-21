@@ -21,11 +21,12 @@ test:
 
 production:
   adapter: postgresql
-  encoding: ****
-  database: ****
-  username: ****
-  password: ****
-  port: ****
+  encoding: utf8
+  host: localhost
+  database: finances
+  username: rails
+  password: r@!l5
+  port: 5432
 
 #development:
 #  adapter: postgresql
