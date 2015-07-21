@@ -13,5 +13,5 @@ $(document).ready(function(){
 });
 
 function activateTab(tabObj){
-    $(tabObj).addClass('active');
+    $(tabObj).addClass('active'); 
 }
